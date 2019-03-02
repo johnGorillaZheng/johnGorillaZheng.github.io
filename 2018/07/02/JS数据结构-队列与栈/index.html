@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!--Description-->
+  
+
+  <!--Author-->
+  
+  <meta name="author" content="John Doe">
+  
+
+  <!--Open Graph Title-->
+  
+      <meta property="og:title" content="JS数据结构 - 队列与栈">
+  
+  <!--Open Graph Description-->
+  
+  <!--Open Graph Site Name-->
+  <meta property="og:site_name" content="Hexo">
+  <!--Type page-->
+  
+      <meta property="og:type" content="article">
+  
+  <!--Page Cover-->
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Title -->
+  
+  <title>JS数据结构 - 队列与栈 - Hexo</title>
+
+
+  <link rel="shortcut icon" href="/logo.png">
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+  <!-- Custom CSS/Sass -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!----------------------------
+  https://github.com/GallenHu/hexo-theme-Daily
+
+ _____            _   _
+|  __ \          (_) | |
+| |  | |   __ _   _  | |  _   _
+| |  | |  / _` | | | | | | | | |
+| |__| | | (_| | | | | | | |_| |
+|_____/   \__,_| |_| |_|  \__, |
+                          __/ |
+                         |___/
+
+    --------------------------->
+
+</head>
+
+
+<body>
+
+  <!-- Nav -->
+  <header class="site-header">
+  <div class="header-inside">
+    <div class="logo">
+      <a href="/" rel="home">
+        
+        <img src="/logo.png" alt="Hexo" height="60">
+        
+      </a>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse">
+        <ul class="navbar-nav">
+          
+          
+            <li>
+              <a href="/.">
+                
+                  home
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/archives">
+                
+                  archive
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="https://github.com/johnGorillaZheng">
+                
+                  GitHub
+                
+              </a>
+            </li>
+          
+            <li>
+              <a href="/about">
+                
+                  About Me
+                
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </nav>
+    <div class="button-wrap">
+      <button class="menu-toggle">Primary Menu</button>
+    </div>
+  </div>
+</header>
+
+
+  <!-- Main Content -->
+  <div class="content-area">
+  <div class="post">
+    <!-- Post Content -->
+    <div class="container" style="max-width:1000px;">
+      <article>
+        <!-- Title date & tags -->
+        <div class="post-header">
+          <h1 class="entry-title">
+            JS数据结构 - 队列与栈
+            
+          </h1>
+          <p class="posted-on">
+          2018-07-02
+          </p>
+          <div class="tags-links">
+            
+              
+            
+          </div>
+        </div>
+        <!-- Post Main Content -->
+        <div class="entry-content">
+          <p>我认为在学习一门新语言的过程中，用其实现常用的数据结构是一种快速深入这门语言的方法，同时还能复习一下数据结构与算法。这篇博客将讲解队列与栈的实现。</p>
+<a id="more"></a>
+<h3 id="基础代码实现"><a href="#基础代码实现" class="headerlink" title="基础代码实现"></a>基础代码实现</h3><p>在实现的过程中我们首先需要选定承载数据结构的容器，然后再用这些数据结构所包含的规则对其方法进行定义。在这里，我们选用js的数组作为我们承载容器。</p>
+<p>这里为了方便展示以及进行穿插讲解，我采用了构造函数法来定义类，并且将相应的方法进行逐步展示。</p>
+<ol>
+<li><p>定义</p>
+<ol>
+<li><p>队列的定义</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Queue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">/*定义容器*/</span></span><br><span class="line">    <span class="keyword">this</span>.dataStore = [];</span><br><span class="line">    <span class="comment">/*定义入队方法*/</span></span><br><span class="line">    <span class="keyword">this</span>.enqueue = enqueue;</span><br><span class="line">    <span class="comment">/*定义出队方法*/</span></span><br><span class="line">    <span class="keyword">this</span>.dequeue = dequeue;</span><br><span class="line">    <span class="comment">/*定义队首*/</span></span><br><span class="line">    <span class="keyword">this</span>.front = front;</span><br><span class="line">    <span class="comment">/*定义队尾*/</span></span><br><span class="line">    <span class="keyword">this</span>.back = back;</span><br><span class="line">    <span class="comment">/*判断是否为空*/</span></span><br><span class="line">    <span class="keyword">this</span>.is_empty = is_empty;</span><br><span class="line">    <span class="comment">/*队列元素数量*/</span></span><br><span class="line">    <span class="keyword">this</span>.count = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>栈的定义</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Stack</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">/*定义容器*/</span></span><br><span class="line">    <span class="keyword">this</span>.dataStore = [];</span><br><span class="line">    <span class="comment">/*定义头指针*/</span></span><br><span class="line">    <span class="keyword">this</span>.top = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/*定义进栈方法*/</span></span><br><span class="line">    <span class="keyword">this</span>.push = push;</span><br><span class="line">    <span class="comment">/*定义退栈方法*/</span></span><br><span class="line">    <span class="keyword">this</span>.pop = pop;</span><br><span class="line">    <span class="comment">/*定义获得长度方法*/</span></span><br><span class="line">    <span class="keyword">this</span>.getLength = length;</span><br><span class="line">    <span class="comment">/*清空栈*/</span></span><br><span class="line">    <span class="keyword">this</span>.clear = clear;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>具体方法的实现</p>
+<ol>
+<li><p>队列的进出<br> 队列是一种先进先出的线性结构。因此，在进行入队的操作时，加进的元素应从容器的尾部加入；在进行退队的操作时，退出的元素应从容器的头部退出。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*入队*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">enqueue</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.count] = element;</span><br><span class="line">    <span class="keyword">this</span>.count ++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*退队*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dequeue</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.count - <span class="number">1</span>; i ++) &#123;</span><br><span class="line">        dataStore[i] =dataStore[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.dataStore.splice(<span class="keyword">this</span>.count - <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">this</span>.count --;</span><br><span class="line">    <span class="keyword">return</span> dataStore[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>栈的进退<br> 与队列相反，栈是一种先进后出的线性结构。所以在进行进栈的操作时，加进的元素应从容器的头部加入；在进行退栈的时候，也应从容器的头部退出</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*入栈*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">push</span>(<span class="params">element</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.top] = element;</span><br><span class="line">    <span class="keyword">this</span>.top ++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*退栈*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">pop</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">this</span>.dataStore[<span class="keyword">this</span>.top - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">this</span>.top --;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+
+        </div>
+      </article>
+    </div>
+    <!-- Comments -->
+    <div class="container" style="max-width:1000px;">
+      
+<section id="comment">
+  <!-- <h1 class="title">Comments</h1> -->
+
+  
+  <div class="container" style="max-width:1000px;" id="gitalk-container"></div>
+
+  <script>
+      var gitalk = new Gitalk({
+          clientID: '590309dbd47d6ab8d199',
+          clientSecret: '7c70076f1a16485068fd518744458aa82e481544',
+          id: decodeURI(window.location.pathname),
+          repo: 'johnGorillaZheng.github.io',
+          owner: 'johnGorillaZheng',
+          admin: ['johnGorillaZheng'],
+      })
+      gitalk.render('gitalk-container')
+  </script>
+
+
+
+</section>
+
+
+
+
+    </div>
+    <!-- Pre or Next -->
+    <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/2018/07/29/JS数据结构-单向链表/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
+      
+      
+        <div class="nav-next">
+          <a href="/2018/06/30/python建模-组队问题/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+        </div>
+      
+    </div>
+
+  </div>
+</div>
+
+
+  <!-- Footer -->
+  <!-- Footer-widgets -->
+<div class="footer-widgets">
+  <div class="row inside-wrapper">
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">关于本站</h1>
+        <div class="custom-widget-content">
+          
+          这里是郑子旋的博客网站，内容包括技术总结与体悟，人生感慨等等。
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Contact</h1>
+        <div class="widget-text">
+          
+            
+              <a href="https://github.com/GallenHu" class="icon icon-github" target="_blank">github</a>
+            
+              <a href="mailto:u6153124@anu.edu.au" class="icon icon-mail" target="_blank">mail</a>
+            
+          
+        </div>
+      </aside>
+    </div>
+    <div class="col-1-3">
+      <aside>
+        <h1 class="widget-title">Search</h1>
+        <div class="widget-text">
+          <form onsubmit="return appDaily.submitSearch('')">
+            <p>
+              <input type="text" placeholder="search..." id="homeSearchInput">
+            </p>
+            <!-- <input type="submit" value="GO"> -->
+          </form>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="site-info">
+  <p>
+    <span>Hexo &copy; 2019</span>
+    
+      <span class="split">|</span>
+      <span>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> with Theme <a href="https://github.com/GallenHu/hexo-theme-Daily" target="_blank">Daily</a></span>
+    
+  </p>
+</footer>
+
+
+  <!-- After footer scripts -->
+  <!-- scripts -->
+<script src="/js/app.js"></script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+
+</html>
