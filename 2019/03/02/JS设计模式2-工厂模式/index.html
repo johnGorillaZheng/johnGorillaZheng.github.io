@@ -39,7 +39,7 @@
   <link rel="shortcut icon" href="/logo.png">
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+  <!-- <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
        <script type="text/x-mathjax-config">
          MathJax.Hub.Config({
            tex2jax: {
@@ -48,7 +48,7 @@
            }
          });
        </script>
-       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
   <!-- Custom CSS/Sass -->
   <link rel="stylesheet" href="/css/style.css">
 
@@ -206,6 +206,7 @@
 <ol>
 <li>添加 新产品，需要编写新的具体工厂及具体产品 ，一定程度增加了系统的复杂度，系统开销可能增大。同时相应的实现难度也会增加。</li>
 </ol>
+<p>印象比较深刻的例子，是《JS设计模式》里讲的设计按钮的例子，这个我自己在实际开发中亲身写过相关的代码，所以比较能够理解。实践过程中，我们不用将按钮的创建过程直接写在业务端，大幅提升业务端代码的可读性，使得维护性得到提升。</p>
 <h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><p>无论是简单工厂还是工厂方法，两种设计模式都是针对某一具体产品进行操作，然而当产品体系复杂起来，比如考虑到增加多个产品层级与复杂结构，就算是工厂方法，扩展性和维护性也能想象到会变得异常庞杂。</p>
 <p>代码</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//抽象工厂簇，存储所有抽象工厂，可以自动建造</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">AbstractFactoryCluster</span>(<span class="params">subType, superType</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> AbstractFactory[superType] == <span class="string">'function'</span>) &#123;</span><br><span class="line">        <span class="comment">//创建缓存类</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">        <span class="comment">//继承父类属性方法</span></span><br><span class="line">        F.prototype = <span class="keyword">new</span> AbstractFactoryCluster[superType]();</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        subType.constructor = subType;</span><br><span class="line">        <span class="comment">//子类原型继承父类</span></span><br><span class="line">        subType.prototype  = <span class="keyword">new</span> F();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'未创建该抽象类'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">AbstractFactoryCluster.AbstractFactory  = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.type = <span class="string">''</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">AbstractFactoryCluster.AbstractFactory.prototype = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    operation1 : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    operation2 : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -223,6 +224,7 @@
 <li><p>结构复杂，使得有时候添加新产品会变得难以扩展。</p>
 </li>
 </ol>
+<p>以上均是官方说法，我由于目前所经历的实习以及做过的项目并没有庞大到一定地步，所以对此没有什么深度的理解与感悟。还是得积累经验，慢慢地去体会这些设计模式的存在意义。</p>
 
         </div>
       </article>
@@ -258,6 +260,10 @@
     </div>
     <!-- Pre or Next -->
     <div class="nav-links">
+      
+        <div class="nav-previous">
+          <a href="/2019/03/03/CSS动画/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+        </div>
       
       
         <div class="nav-next">
@@ -346,7 +352,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="前端知识 - float的使用">
+      <meta property="og:title" content="CSS动画">
   
   <!--Open Graph Description-->
   
@@ -33,13 +33,13 @@
 
   <!-- Title -->
   
-  <title>前端知识 - float的使用 - Hexo</title>
+  <title>CSS动画 - Hexo</title>
 
 
   <link rel="shortcut icon" href="/logo.png">
   <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
   <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+  <!-- <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
        <script type="text/x-mathjax-config">
          MathJax.Hub.Config({
            tex2jax: {
@@ -48,7 +48,7 @@
            }
          });
        </script>
-       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> -->
   <!-- Custom CSS/Sass -->
   <link rel="stylesheet" href="/css/style.css">
 
@@ -140,43 +140,21 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            前端知识 - float的使用
+            CSS动画
             
           </h1>
           <p class="posted-on">
-          2018-04-18
+          2019-03-03
           </p>
           <div class="tags-links">
             
-              
-                <a href="/tags/CSS/" rel="tag">
-                  CSS
-                </a>
-              
-                <a href="/tags/页面/" rel="tag">
-                  页面
-                </a>
               
             
           </div>
         </div>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p>前端刚开始html界面的时候，对于我来说最头疼的莫过于div与css配合的时候各种不听使唤，而其中最讨厌的当属float浮动。自己精心想好了一个高（很）大（low）上（逼）的页面布局，信心满满开始敲代码，结果打开网页，各种图片乱飞，布局也全是乱的。<br><a id="more"></a><br>我相信，对于很多初学者（至少我是这样的），一开始写父级的div习惯于将其高度与宽v度定死，以此契合心中的设计。当得知float:left这一属性能将div自动从左向右顺序排列并迫不及待将其加入自己的代码后，出现了以下效果。</p>
-<h3 id="1-0-笨方法"><a href="#1-0-笨方法" class="headerlink" title="1.0 笨方法"></a>1.0 笨方法</h3><p>第一种方法，行之有效但笨的可以。就是直接将所有的子div的高度“硬”设置为与父级div相同的数值。这样可以避免出现高度塌陷的问题。我在自己写的第一个仿京东首页，基本就是这样写死的。CSS代码就不贴了，缺点显而易见，扩展性极差，且对接下来的子div必须将高度设置成与父节点相同的值，且必须将里面所有的包括图片在内的所有元素高度设置成小于等于父节点的值，真是限制手脚。所以说这种方法，能别用尽量别用，这属于作茧自缚型编程。</p>
-<h3 id="2-0-清除浮动-clear属性"><a href="#2-0-清除浮动-clear属性" class="headerlink" title="2.0 清除浮动 - clear属性"></a>2.0 清除浮动 - clear属性</h3><p>为了清楚浮动，我们必须用到clear属性，用张鑫旭大神的说法，这事float的天然克星。一般来说，我们会在需要的div（但个人感觉基本上一个页面中所有的div应该都需要清除浮动）的css中加入clear:both这条属性来清除浮动。可以在编程中加入以下的代码。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: table;</span><br><span class="line">    <span class="attribute">clear</span>: both</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我在自己设计自己的课程作业的网站中曾经就用过这种代码方法。这么写的话，所有div自动带有清除浮动的效果。但是也确实存在问题，clear:both后的元素依然可能存在“被环绕”的现象。在张鑫旭大神的书中，是文字错位现象（CSS世界，p159）。我所发现的是图片错位。我本人对于这种方式的解决方法是将已确认同一行的多个div在外部再包裹一个div。将after的影响包裹起来不外泄。效果来说比较可以，唯一的问题就是会造成hHTML代码冗余。此外，必须保证包裹的多个div宽度小于等于100%。容易造成后期页面改动造成一定的困扰。</p>
-<h2 id="3-0-清除浮动-BFC"><a href="#3-0-清除浮动-BFC" class="headerlink" title="3.0 清除浮动 - BFC"></a>3.0 清除浮动 - BFC</h2><p>BFC全称block formatting context,意为“块级格式化上下文”。这个东西有这么一个表现原则，即无论一个块级元素的内部怎么折腾，不会影响外部元素。这种思想跟我在上文提到的用div包裹多个div防止外泄的思想有些类似。但BFC可以通过特定的CSS特性组合来触发，而不用自己去制造这么一个结界。触发的条件如下</p>
-<ul>
-<li>html根元素</li>
-<li>float $\neq$ none</li>
-<li>overflow = scroll || auto || hidden</li>
-<li>display = table-cell || table-caption || inline-block</li>
-<li>position <script type="math/tex">\neq</script> relative &amp;&amp; static</li>
-</ul>
-<p>只要符合其中任意一条，就可以告别clear属性了。查阅书籍可知，张鑫旭大神比较中意于使用overflow:hidden这个属性来做，唯一的缺点是一旦超出宽度，就会如字面意思那样被隐藏掉。这种做法我还没有尝试过，等真正试水了再贴代码。</p>
-
+          
         </div>
       </article>
     </div>
@@ -212,13 +190,9 @@
     <!-- Pre or Next -->
     <div class="nav-links">
       
-        <div class="nav-previous">
-          <a href="/2018/05/19/前端知识-JS入门篇/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
-        </div>
-      
       
         <div class="nav-next">
-          <a href="/2018/02/04/从现在起，成为一名优秀的工程师/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+          <a href="/2019/03/02/JS设计模式2-工厂模式/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
         </div>
       
     </div>
@@ -303,7 +277,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>
