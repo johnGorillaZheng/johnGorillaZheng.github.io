@@ -164,6 +164,9 @@
 <p>好吧，我不是很懂其中机制，但顺着来确实成功了。而且连其中的格式化规则也不用改。</p>
 <p>安装hexo-renderer-mathjax插件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-mathjax --save</span><br></pre></td></tr></table></figure>
+<p>来自2019年3月17日的更新</p>
+<p>再完成hexo-renderer-mathjax的安装后，需要进入blog/node_modules/hexo-renderer-mathjax/mathjax.html文件，修改其中的script标签</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>然后在Daily，landscape等主题就可以直接开始写数学公式了。</p>
 
         </div>
