@@ -16,7 +16,7 @@
 
   <!--Open Graph Title-->
   
-      <meta property="og:title" content="前端知识 - float的使用">
+      <meta property="og:title" content="CSS布局-初识flex">
   
   <!--Open Graph Description-->
   
@@ -33,7 +33,7 @@
 
   <!-- Title -->
   
-  <title>前端知识 - float的使用 - Hexo</title>
+  <title>CSS布局-初识flex - Hexo</title>
 
 
   <link rel="shortcut icon" href="/logo.png">
@@ -140,11 +140,11 @@
         <!-- Title date & tags -->
         <div class="post-header">
           <h1 class="entry-title">
-            前端知识 - float的使用
+            CSS布局-初识flex
             
           </h1>
           <p class="posted-on">
-          2018-04-18
+          2019-03-18
           </p>
           <div class="tags-links">
             
@@ -153,8 +153,8 @@
                   CSS
                 </a>
               
-                <a href="/tags/页面/" rel="tag">
-                  页面
+                <a href="/tags/布局/" rel="tag">
+                  布局
                 </a>
               
             
@@ -162,20 +162,56 @@
         </div>
         <!-- Post Main Content -->
         <div class="entry-content">
-          <p>前端刚开始html界面的时候，对于我来说最头疼的莫过于div与css配合的时候各种不听使唤，而其中最讨厌的当属float浮动。自己精心想好了一个高（很）大（low）上（逼）的页面布局，信心满满开始敲代码，结果打开网页，各种图片乱飞，布局也全是乱的。<br><a id="more"></a><br>我相信，对于很多初学者（至少我是这样的），一开始写父级的div习惯于将其高度与宽v度定死，以此契合心中的设计。当得知float:left这一属性能将div自动从左向右顺序排列并迫不及待将其加入自己的代码后，出现了以下效果。</p>
-<h3 id="1-0-笨方法"><a href="#1-0-笨方法" class="headerlink" title="1.0 笨方法"></a>1.0 笨方法</h3><p>第一种方法，行之有效但笨的可以。就是直接将所有的子div的高度“硬”设置为与父级div相同的数值。这样可以避免出现高度塌陷的问题。我在自己写的第一个仿京东首页，基本就是这样写死的。CSS代码就不贴了，缺点显而易见，扩展性极差，且对接下来的子div必须将高度设置成与父节点相同的值，且必须将里面所有的包括图片在内的所有元素高度设置成小于等于父节点的值，真是限制手脚。所以说这种方法，能别用尽量别用，这属于作茧自缚型编程。</p>
-<h3 id="2-0-清除浮动-clear属性"><a href="#2-0-清除浮动-clear属性" class="headerlink" title="2.0 清除浮动 - clear属性"></a>2.0 清除浮动 - clear属性</h3><p>为了清楚浮动，我们必须用到clear属性，用张鑫旭大神的说法，这事float的天然克星。一般来说，我们会在需要的div（但个人感觉基本上一个页面中所有的div应该都需要清除浮动）的css中加入clear:both这条属性来清除浮动。可以在编程中加入以下的代码。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: table;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我在自己设计自己的课程作业的网站中曾经就用过这种代码方法。这么写的话，所有div自动带有清除浮动的效果。但是也确实存在问题，clear:both后的元素依然可能存在“被环绕”的现象。在张鑫旭大神的书中，是文字错位现象（CSS世界，p159）。我所发现的是图片错位。我本人对于这种方式的解决方法是将已确认同一行的多个div在外部再包裹一个div。将after的影响包裹起来不外泄。效果来说比较可以，唯一的问题就是会造成hHTML代码冗余。此外，必须保证包裹的多个div宽度小于等于100%。容易造成后期页面改动造成一定的困扰。</p>
-<h2 id="3-0-清除浮动-BFC"><a href="#3-0-清除浮动-BFC" class="headerlink" title="3.0 清除浮动 - BFC"></a>3.0 清除浮动 - BFC</h2><p>BFC全称block formatting context,意为“块级格式化上下文”。这个东西有这么一个表现原则，即无论一个块级元素的内部怎么折腾，不会影响外部元素。这种思想跟我在上文提到的用div包裹多个div防止外泄的思想有些类似。但BFC可以通过特定的CSS特性组合来触发，而不用自己去制造这么一个结界。触发的条件如下</p>
-<ul>
-<li>html根元素</li>
-<li>float <script type="math/tex">\neq</script> none</li>
-<li>overflow = scroll || auto || hidden</li>
-<li>display = table-cell || table-caption || inline-block</li>
-<li>position <script type="math/tex">\neq</script> relative &amp;&amp; static</li>
-</ul>
-<p>只要符合其中任意一条，就可以告别clear属性了。查阅书籍可知，张鑫旭大神比较中意于使用overflow:hidden这个属性来做，唯一的缺点是一旦超出宽度，就会如字面意思那样被隐藏掉。这种做法我还没有尝试过，等真正试水了再贴代码。</p>
+          <p>我的第一段实习的第一个任务是修改网页的适配性，使其能向下兼容到IE9，其中一个重要任务就是将flex布局的页面改成传统的流式布局的页面。那么flex布局是怎样的，这篇博客就来进行详细说明。<br><a id="more"></a></p>
+<h2 id="模型介绍"><a href="#模型介绍" class="headerlink" title="模型介绍"></a>模型介绍</h2><h2 id="容器的六种属性"><a href="#容器的六种属性" class="headerlink" title="容器的六种属性"></a>容器的六种属性</h2><ol>
+<li>flex-direction<br> 控制弹性盒子内部元素的排列方向，计算值包括如下部分：<ol>
+<li>row: 沿主轴从左向右</li>
+<li>row-reverse: 沿主轴从右向左</li>
+<li>column: 交叉轴从上到下</li>
+<li>column-reverse: 交叉轴从下到上</li>
+</ol>
+</li>
+<li>flex-wrap<br> 默认情况下，项目都排在一条线，这个属性定义如果一条轴线排不下，如何换行：<ol>
+<li>nowrap: 不换行</li>
+<li>wrap: 换行，第一行在上方</li>
+<li>wrap-reverse: 换行，第一行在下方</li>
+</ol>
+</li>
+<li>flex-flow<br> 前两者的合一起的简写模式，默认值为row nowrap</li>
+<li>justify-content<br> 在主轴上的对齐方式，值如下，<ol>
+<li>flex-start: 左对其</li>
+<li>flex-end: 右对齐</li>
+<li>center: 居中</li>
+<li>space-between: 两端对齐，项目之间间隔相等</li>
+<li>space-around: 每个项目两侧的间隔相等，边框有间隔</li>
+</ol>
+</li>
+<li>align-items<ol>
+<li>flex-start: 交叉轴的起点对齐</li>
+<li>flex-end: 交叉轴终点对其</li>
+<li>center: 交叉轴中点对齐</li>
+<li>baseline: 项目第一行文字的基线对齐</li>
+<li>stretch: 如果未设置高度或设为auto，将占满整个容器的高度。</li>
+</ol>
+</li>
+<li>align-content<ol>
+<li>flex-start：与交叉轴的起点对齐。</li>
+<li>flex-end：与交叉轴的终点对齐。</li>
+<li>center：与交叉轴的中点对齐。</li>
+<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+<li>stretch（默认值）：轴线占满整个交叉轴。</li>
+</ol>
+</li>
+</ol>
+<h2 id="项目的六种属性"><a href="#项目的六种属性" class="headerlink" title="项目的六种属性"></a>项目的六种属性</h2><ol>
+<li>order<br> 排列顺序，数值越小，排列越靠前</li>
+<li>flex-grow<br> 属性定义项目的放大比例，默认为0，如果存在剩余空间，也不放大</li>
+<li>flex-shrink<br> 属性定义项目的缩小比例，默认为1，如果空间不足，项目将缩小</li>
+<li>flex-basis<br> 分配多余空间之前，项目占据的主轴空间。</li>
+<li>flex<br> 前四者的简写</li>
+<li>align-self<br> 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，指定后可使该元素对齐方式特殊化<br> 值当不是auto时，与align-item一致</li>
+</ol>
 
         </div>
       </article>
@@ -213,12 +249,12 @@
     <div class="nav-links">
       
         <div class="nav-previous">
-          <a href="/2018/05/19/前端知识-JS入门篇/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
+          <a href="/2019/03/24/CSS-position详解/" rel="prev"><span class="meta-arraw meta-arraw-left"></span> Older Posts</a>
         </div>
       
       
         <div class="nav-next">
-          <a href="/2018/02/04/从现在起，成为一名优秀的工程师/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
+          <a href="/2019/03/02/JS设计模式2-工厂模式/" rel="prev">Newer Posts <span class="meta-arraw meta-arraw-right"></span></a>
         </div>
       
     </div>
