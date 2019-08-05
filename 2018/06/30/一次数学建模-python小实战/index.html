@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="其实这只是本学期在 anu 数据科学入门课程最后一次作业的大题的详解。背景如下，我们要组建一只棒球队，给定了预算，所有球员的所有信息（包括，姓名，年龄，球队里的位置等基本信息以及每名球员的评分），要求在预算范围内组建一只总评分最高的球队，且每个位置有相应的数量要求。下面就是所有球员的一个缩影，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次数学建模-python小实战">
+<meta property="og:url" content="http://yoursite.com/2018/06/30/一次数学建模-python小实战/index.html">
+<meta property="og:site_name" content="旋空间">
+<meta property="og:description" content="其实这只是本学期在 anu 数据科学入门课程最后一次作业的大题的详解。背景如下，我们要组建一只棒球队，给定了预算，所有球员的所有信息（包括，姓名，年龄，球队里的位置等基本信息以及每名球员的评分），要求在预算范围内组建一只总评分最高的球队，且每个位置有相应的数量要求。下面就是所有球员的一个缩影，">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-11T10:46:48.834Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一次数学建模-python小实战">
+<meta name="twitter:description" content="其实这只是本学期在 anu 数据科学入门课程最后一次作业的大题的详解。背景如下，我们要组建一只棒球队，给定了预算，所有球员的所有信息（包括，姓名，年龄，球队里的位置等基本信息以及每名球员的评分），要求在预算范围内组建一只总评分最高的球队，且每个位置有相应的数量要求。下面就是所有球员的一个缩影，">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+          
+        
+    
+    <!-- title -->
+    <title>一次数学建模-python小实战</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/07/02/JS数据结构-队列与栈/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/05/19/前端知识-JS入门篇（2）/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/06/30/一次数学建模-python小实战/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&text=一次数学建模-python小实战"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&title=一次数学建模-python小实战"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&is_video=false&description=一次数学建模-python小实战"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=一次数学建模-python小实战&body=Check out this article: http://yoursite.com/2018/06/30/一次数学建模-python小实战/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&title=一次数学建模-python小实战"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&title=一次数学建模-python小实战"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&title=一次数学建模-python小实战"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&title=一次数学建模-python小实战"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&name=一次数学建模-python小实战&description=&lt;p&gt;其实这只是本学期在 anu 数据科学入门课程最后一次作业的大题的详解。背景如下，我们要组建一只棒球队，给定了预算，所有球员的所有信息（包括，姓名，年龄，球队里的位置等基本信息以及每名球员的评分），要求在预算范围内组建一只总评分最高的球队，且每个位置有相应的数量要求。下面就是所有球员的一个缩影，&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-number">1.</span> <span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">2.</span> <span class="toc-text">代码实现</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        一次数学建模-python小实战
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">旋空间</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-06-30T10:17:18.000Z" itemprop="datePublished">2018-06-30</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>其实这只是本学期在 anu 数据科学入门课程最后一次作业的大题的详解。背景如下，我们要组建一只棒球队，给定了预算，所有球员的所有信息（包括，姓名，年龄，球队里的位置等基本信息以及每名球员的评分），要求在预算范围内组建一只总评分最高的球队，且每个位置有相应的数量要求。下面就是所有球员的一个缩影，</p>
+<a id="more"></a>
+
+<table>
+<thead>
+<tr>
+<th align="left">playerID</th>
+<th align="center">POS</th>
+<th align="center">salary</th>
+<th align="center">OPW</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">abreubo01</td>
+<td align="center">OF</td>
+<td align="center">9000000.0</td>
+<td align="center">122.452634</td>
+</tr>
+<tr>
+<td align="left">abreujo02</td>
+<td align="center">1B</td>
+<td align="center">8666000.0</td>
+<td align="center">80.483563</td>
+</tr>
+</tbody></table>
+<p>其中 C, 1B, 2B, 3B 和SS各要求有一个，OF有4个；最后一列OPW为该球员评分</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>作为一名大学前两年在西工大呆过且禁受过五一数模节洗礼的人来说，这个问题可以很好地用数学建模的思想来解决。首先，又一个需要最大化的函数，又有若干约束，其中包括资金约束，以及各个位置人员数量的限制。这很符合线性规划的思想，可以建立如下模型。</p>
+<p>其中，目标方程定义如下：</p>
+<p>$$f(x_i) = max(\frac{1}{9} \sum_{i=1}^{length(k)} OPW(x_i)*x_i)$$</p>
+<p>其中，</p>
+<p>$$S=\{ \{ x: POS(x) = 1B\},\{ x: POS(x) = 2B\},\{ x: POS(x) = 3B\}, \{ x: POS(x) = C\},\{ x: POS(x) = OF\}, \{ x: POS(x) = SS\} \}$$</p>
+<p>其中$POS(x)$为队员$x$所处位置，$length(k)$为每个子集$k$的长度，$OPW(x)$为队员$x$的评分</p>
+<p>对于目标方程中每一个$x_i$的取值范围定义如下,</p>
+<p>$$<br>x_i =<br>\begin{cases}<br>0, &amp; \text{The player i is not selected}\\<br>1  &amp; \text{The player i is selected}<br>\end{cases}<br>$$</p>
+<p>Markdown 的数学公式里貌似不能加中文，所以用英文表示一下，应该能看懂哈。主体思想其实是线性规划中的 0-1 规划，所以取值范围为$0$ 或 $1$。</p>
+<p>约束方程如下：</p>
+<p>$$<br>\begin{cases}<br>\sum_{i=1}^{length(1B)}x_i=1 &amp; \text{There should be one 1B} \\<br>\sum_{i=1}^{length(2B)}x_i=1 &amp; \text{There should be one 2B} \\<br>\sum_{i=1}^{length(3B)}x_i=1 &amp; \text{There should be one 3B} \\<br>\sum_{i=1}^{length(C)}x_i=1 &amp; \text{There should be one C} \\<br>\sum_{i=1}^{length(OF)}x_i=4 &amp; \text{There should be four OF} \\<br>\sum_{i=1}^{length(SS)}x_i=1 &amp; \text{There should be one SS} \\<br>\sum_{k \in S} \sum_{i=1}^{length(k)}salary(x_i)*x_i \leq 25 &amp; \text{The total salary is less than 25 million} \\<br>\end{cases}<br>$$</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>根据以上数学基础，我们可以写出如下代码，其中用到了 scipy 这个库的 lingprog 做线性规划</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.optimize <span class="keyword">import</span> linprog</span><br><span class="line">players = playerLS.drop(columns=[<span class="string">'minYear'</span>,<span class="string">'maxYear'</span>,<span class="string">'1B'</span>,<span class="string">'2B'</span>,<span class="string">'3B'</span>,<span class="string">'HR'</span>,<span class="string">'BB'</span>,<span class="string">'nameFirst'</span>,<span class="string">'nameLast'</span>])</span><br><span class="line">players[<span class="string">'salary'</span>] = players[<span class="string">'salary'</span>]/<span class="number">1000000</span></span><br><span class="line">players = players.sort_values(<span class="string">'POS'</span>).reset_index().drop(columns=[<span class="string">'index'</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># start and end indexes of 1B</span></span><br><span class="line">start_1B = players[players[<span class="string">'POS'</span>] == <span class="string">'1B'</span>].first_valid_index()</span><br><span class="line">end_1B = players[players[<span class="string">'POS'</span>] == <span class="string">'1B'</span>].last_valid_index()</span><br><span class="line"></span><br><span class="line"><span class="comment"># start and end indexes of 2B</span></span><br><span class="line">start_2B = players[players[<span class="string">'POS'</span>] == <span class="string">'2B'</span>].first_valid_index()</span><br><span class="line">end_2B = players[players[<span class="string">'POS'</span>] == <span class="string">'2B'</span>].last_valid_index()</span><br><span class="line"></span><br><span class="line"><span class="comment"># start and end indexes of 3B</span></span><br><span class="line">start_3B = players[players[<span class="string">'POS'</span>] == <span class="string">'3B'</span>].first_valid_index()</span><br><span class="line">end_3B = players[players[<span class="string">'POS'</span>] == <span class="string">'3B'</span>].last_valid_index()</span><br><span class="line"></span><br><span class="line"><span class="comment"># start and end indexes of C</span></span><br><span class="line">start_C = players[players[<span class="string">'POS'</span>] == <span class="string">'C'</span>].first_valid_index()</span><br><span class="line">end_C = players[players[<span class="string">'POS'</span>] == <span class="string">'C'</span>].last_valid_index()</span><br><span class="line"></span><br><span class="line"><span class="comment"># start and end indexes of OF</span></span><br><span class="line">start_OF = players[players[<span class="string">'POS'</span>] == <span class="string">'OF'</span>].first_valid_index()</span><br><span class="line">end_OF = players[players[<span class="string">'POS'</span>] == <span class="string">'OF'</span>].last_valid_index()</span><br><span class="line"></span><br><span class="line"><span class="comment"># start and end indexes of SS</span></span><br><span class="line">start_SS = players[players[<span class="string">'POS'</span>] == <span class="string">'SS'</span>].first_valid_index()</span><br><span class="line">end_SS = players[players[<span class="string">'POS'</span>] == <span class="string">'SS'</span>].last_valid_index()</span><br><span class="line"></span><br><span class="line"><span class="comment">#initialize coficients</span></span><br><span class="line">cofficients = np.zeros_like(np.arange(len(players), dtype=float))</span><br><span class="line"><span class="comment">#initialize constraints</span></span><br><span class="line">constraint_1B = np.zeros_like(np.arange(len(players), dtype=float))</span><br><span class="line">constraint_2B = np.zeros_like(np.arange(len(players), dtype=float))</span><br><span class="line">constraint_3B = np.zeros_like(np.arange(len(players), dtype=float))</span><br><span class="line">constraint_C = np.zeros_like(np.arange(len(players), dtype=float))</span><br><span class="line">constraint_OF = np.zeros_like(np.arange(len(players), dtype=float))</span><br><span class="line">constraint_SS = np.zeros_like(np.arange(len(players), dtype=float))</span><br><span class="line">constraint_salary = np.zeros_like(np.arange(len(players), dtype=float))</span><br><span class="line"><span class="comment">#value of constraints</span></span><br><span class="line">constraints_value_eq = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">1</span>]</span><br><span class="line">constraints_value_ub = [<span class="number">25</span>]</span><br><span class="line"><span class="comment">#bounds -&gt; for each x in the math model, the x is either 0 or 1</span></span><br><span class="line">bounds = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i, row <span class="keyword">in</span> players.iterrows():</span><br><span class="line">    <span class="comment">#for 1B</span></span><br><span class="line">    <span class="keyword">if</span> i &gt;= start_1B <span class="keyword">and</span> i &lt;= end_1B:</span><br><span class="line">        constraint_1B[i] = <span class="number">1</span></span><br><span class="line">    <span class="comment">#for 2B</span></span><br><span class="line">    <span class="keyword">if</span> i &gt;= start_2B <span class="keyword">and</span> i &lt;= end_2B:</span><br><span class="line">        constraint_2B[i] = <span class="number">1</span></span><br><span class="line">    <span class="comment">#for 3B</span></span><br><span class="line">    <span class="keyword">if</span> i &gt;= start_3B <span class="keyword">and</span> i &lt;= end_3B:</span><br><span class="line">        constraint_3B[i] = <span class="number">1</span></span><br><span class="line">    <span class="comment">#for C</span></span><br><span class="line">    <span class="keyword">if</span> i &gt;= start_C <span class="keyword">and</span> i &lt;= end_C:</span><br><span class="line">        constraint_C[i] = <span class="number">1</span></span><br><span class="line">    <span class="comment">#for OF</span></span><br><span class="line">    <span class="keyword">if</span> i &gt;= start_OF <span class="keyword">and</span> i &lt;= end_OF:</span><br><span class="line">        constraint_OF[i] = <span class="number">1</span></span><br><span class="line">    <span class="comment">#for SS only 1 people</span></span><br><span class="line">    <span class="keyword">if</span> i &gt;= start_SS <span class="keyword">and</span> i &lt;= end_SS:</span><br><span class="line">        constraint_SS[i] = <span class="number">1</span></span><br><span class="line">    <span class="comment">#for total salary</span></span><br><span class="line">    constraint_salary[i] =row[<span class="string">'salary'</span>]</span><br><span class="line">    <span class="comment">#for cofficients</span></span><br><span class="line">    cofficients[i] = -(row[<span class="string">'OPW'</span>])</span><br><span class="line">    <span class="comment"># add new bounds</span></span><br><span class="line">    bounds.append([<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line"><span class="comment"># This is our equility constraints - each position has its number of players</span></span><br><span class="line">constraints_eq = [constraint_1B, constraint_2B, constraint_3B, constraint_C, constraint_OF, constraint_SS]</span><br><span class="line"><span class="comment"># This is our upper bounds constraints - salary &lt;= 25 million</span></span><br><span class="line">constraints_ub = [constraint_salary]</span><br><span class="line"><span class="comment"># let us do the linear programing</span></span><br><span class="line">res = linprog(cofficients, A_ub=constraints_ub, b_ub=constraints_value_ub, A_eq=constraints_eq, b_eq=constraints_value_eq, bounds=bounds, options=&#123;<span class="string">"disp"</span>: <span class="literal">True</span>, <span class="string">'maxiter'</span>: <span class="number">20000000000</span>&#125;)</span><br><span class="line">results = res.x</span><br><span class="line">team = &#123;<span class="string">'playerID'</span>:[]&#125;</span><br><span class="line">salary = <span class="number">0</span></span><br><span class="line">total_opw = <span class="number">0</span></span><br><span class="line"><span class="comment"># since the linear programming provided by scipy cannot do integer programing</span></span><br><span class="line"><span class="comment"># we need to get all element which is larger than 0.5</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, len(results)):</span><br><span class="line">    <span class="keyword">if</span> results[i] &gt; <span class="number">0.5</span>:</span><br><span class="line">        salary += players.iloc[i][<span class="string">'salary'</span>]</span><br><span class="line">        team[<span class="string">'playerID'</span>].append(players.iloc[i][<span class="string">'playerID'</span>])</span><br><span class="line">        salary += players.iloc[i][<span class="string">'salary'</span>]</span><br><span class="line">        total_opw += players.iloc[i][<span class="string">'OPW'</span>]</span><br><span class="line">team = pd.DataFrame(team)</span><br><span class="line">team = pd.merge(team, playerLS, how=<span class="string">'inner'</span>, on=<span class="string">'playerID'</span>)</span><br><span class="line">print(<span class="string">'The average of OPW is'</span>, total_opw/<span class="number">9</span>)</span><br><span class="line">team</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#解决方法"><span class="toc-number">1.</span> <span class="toc-text">解决方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">2.</span> <span class="toc-text">代码实现</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/06/30/一次数学建模-python小实战/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&text=一次数学建模-python小实战"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&title=一次数学建模-python小实战"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&is_video=false&description=一次数学建模-python小实战"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=一次数学建模-python小实战&body=Check out this article: http://yoursite.com/2018/06/30/一次数学建模-python小实战/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&title=一次数学建模-python小实战"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&title=一次数学建模-python小实战"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&title=一次数学建模-python小实战"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&title=一次数学建模-python小实战"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/06/30/一次数学建模-python小实战/&name=一次数学建模-python小实战&description=&lt;p&gt;其实这只是本学期在 anu 数据科学入门课程最后一次作业的大题的详解。背景如下，我们要组建一只棒球队，给定了预算，所有球员的所有信息（包括，姓名，年龄，球队里的位置等基本信息以及每名球员的评分），要求在预算范围内组建一只总评分最高的球队，且每个位置有相应的数量要求。下面就是所有球员的一个缩影，&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Zixuan Zheng
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
