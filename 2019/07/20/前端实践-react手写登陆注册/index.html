@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。">
+    <meta name="description" content="最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。本篇文章只提供大致的思路。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端实践-react手写登陆注册">
 <meta property="og:url" content="http://yoursite.com/2019/07/20/前端实践-react手写登陆注册/index.html">
 <meta property="og:site_name" content="旋空间">
-<meta property="og:description" content="最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。">
+<meta property="og:description" content="最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。本篇文章只提供大致的思路。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-05T04:46:38.542Z">
+<meta property="og:updated_time" content="2019-08-06T13:24:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端实践-react手写登陆注册">
-<meta name="twitter:description" content="最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。">
+<meta name="twitter:description" content="最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。本篇文章只提供大致的思路。">
     
     
         
@@ -48,7 +48,8 @@
     
 </head>
 
-<body class="max-width mx-auto px3 ltr">    
+<body class="max-width mx-auto px3 ltr">
+    
       <div id="header-post">
   <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
@@ -68,6 +69,8 @@
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" href="/2019/08/06/前端实践-目前踩过的cookie的坑/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="/2019/07/13/读史感悟-从魏晋嬗变中看家族力量/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -92,12 +95,12 @@
   <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/20/前端实践-react手写登陆注册/&title=前端实践-react手写登陆注册"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/20/前端实践-react手写登陆注册/&title=前端实践-react手写登陆注册"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/20/前端实践-react手写登陆注册/&title=前端实践-react手写登陆注册"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/20/前端实践-react手写登陆注册/&name=前端实践-react手写登陆注册&description=&lt;p&gt;最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/20/前端实践-react手写登陆注册/&name=前端实践-react手写登陆注册&description=&lt;p&gt;最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。本篇文章只提供大致的思路。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#大体思路"><span class="toc-number">1.</span> <span class="toc-text">大体思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础功能的实现"><span class="toc-number">2.</span> <span class="toc-text">基础功能的实现</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#大体思路"><span class="toc-number">1.</span> <span class="toc-text">大体思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础功能的实现"><span class="toc-number">2.</span> <span class="toc-text">基础功能的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生命周期的操作"><span class="toc-number">3.</span> <span class="toc-text">生命周期的操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单的创建与发送"><span class="toc-number">4.</span> <span class="toc-text">表单的创建与发送</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -136,7 +139,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。</p>
+    <p>最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。本篇文章只提供大致的思路。</p>
 <a id="more"></a>
 
 <h2 id="大体思路"><a href="#大体思路" class="headerlink" title="大体思路"></a>大体思路</h2><p>对于第一次注册与登陆的用户，其待开发的事情包括：</p>
@@ -160,7 +163,7 @@
 <h2 id="基础功能的实现"><a href="#基础功能的实现" class="headerlink" title="基础功能的实现"></a>基础功能的实现</h2><ol>
 <li><p>cookie的操作</p>
 <p> 如果cookie被设置为可被js访问，那么js将访问到一个字符串，其中含有所有cookie的内容。由于cookie的添加基本上由后端response中header的set-cookie这个字段完成，故一般的操作为查询与删除。</p>
-<p> cookie的查找主要是对字符串进行操作，过程比较简单，思路掠。。。</p>
+<p> cookie的查找主要是对字符串进行操作，过程比较简单，思路略。。。</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> hasCookie = <span class="function"><span class="params">str</span> =&gt;</span></span><br><span class="line"><span class="built_in">document</span>.cookie.split(<span class="string">';'</span>).some(<span class="function"><span class="params">token</span> =&gt;</span> token.indexOf(str) !== <span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
 
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getCookie = <span class="function"><span class="params">str</span> =&gt;</span> &#123;</span><br><span class="line"><span class="keyword">const</span> cookies = <span class="built_in">document</span>.cookie.split(<span class="string">';'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> token <span class="keyword">of</span> cookies) &#123;</span><br><span class="line">    <span class="keyword">if</span> (token.indexOf(str) !== <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> token.split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -171,15 +174,15 @@
 <li><p>localstorage的操作</p>
 <p> localstorage自己已经集成了添加，获取以及清除所有的功能，调用即可，至于取到的字符串，则根据实际情况进行操作。</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">'key'</span>, <span class="string">'value'</span>);</span><br><span class="line">localStorage.getItem(<span class="string">'key'</span>);</span><br><span class="line">localStorage.clear();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生命周期的操作。</p>
-<p> 大体思路是在组件挂载阶段就进行登陆状态的判定，使导航栏根据判定结果决定渲染的东西。比如导航栏是渲染登陆注册的链接，还是用户选项的下拉菜单。</p>
-<p> 这里用functional component来实现，比较简洁。</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Sample</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [isLoggin, setIsLoggin] = useState(<span class="literal">false</span>);</span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        setIsLoggin(!!getCookies(<span class="string">'username'</span>) || !!localStorage.getItem(<span class="string">'username'</span>));</span><br><span class="line">    &#125;, []));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &#123;isLoggin ? <span class="xml"><span class="tag">&lt;<span class="name">ComponentLogin</span> /&gt;</span> : <span class="tag">&lt;<span class="name">ComponentNotLogin</span> /&gt;</span>&#125;</span></span><br><span class="line"><span class="xml">    );</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>表单的创建与发送。</p>
+
 </li>
 </ol>
+<h2 id="生命周期的操作"><a href="#生命周期的操作" class="headerlink" title="生命周期的操作"></a>生命周期的操作</h2><p>大体思路是在组件挂载阶段就进行登陆状态的判定，使导航栏根据判定结果决定渲染的东西。比如导航栏是渲染登陆注册的链接，还是用户选项的下拉菜单。</p>
+<p>这里用functional component来实现，比较简洁。以下只是一个示例，在实际的操作中，判断是否登陆的函数可能会需要与redux相结合，同时，登陆的判断也可用于有登陆要求的页面渲染，可以与reacter dom router相结合。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Sample</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [isLoggin, setIsLoggin] = useState(<span class="literal">false</span>);</span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        setIsLoggin(!!getCookies(<span class="string">'username'</span>) || !!localStorage.getItem(<span class="string">'username'</span>));</span><br><span class="line">    &#125;, []));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &#123;isLoggin ? <span class="xml"><span class="tag">&lt;<span class="name">ComponentLogin</span> /&gt;</span> : <span class="tag">&lt;<span class="name">ComponentNotLogin</span> /&gt;</span>&#125;</span></span><br><span class="line"><span class="xml">    );</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="表单的创建与发送"><a href="#表单的创建与发送" class="headerlink" title="表单的创建与发送"></a>表单的创建与发送</h2><p>这个部分可以参考以后写的表单数据发送的内容。敬请期待。</p>
+<p>关于cookie的相关信息，也敬请期待。</p>
 
   </div>
 </article>
@@ -203,7 +206,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#大体思路"><span class="toc-number">1.</span> <span class="toc-text">大体思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础功能的实现"><span class="toc-number">2.</span> <span class="toc-text">基础功能的实现</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#大体思路"><span class="toc-number">1.</span> <span class="toc-text">大体思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础功能的实现"><span class="toc-number">2.</span> <span class="toc-text">基础功能的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生命周期的操作"><span class="toc-number">3.</span> <span class="toc-text">生命周期的操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单的创建与发送"><span class="toc-number">4.</span> <span class="toc-text">表单的创建与发送</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -217,7 +220,7 @@
   <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/07/20/前端实践-react手写登陆注册/&title=前端实践-react手写登陆注册"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/07/20/前端实践-react手写登陆注册/&title=前端实践-react手写登陆注册"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/07/20/前端实践-react手写登陆注册/&title=前端实践-react手写登陆注册"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/20/前端实践-react手写登陆注册/&name=前端实践-react手写登陆注册&description=&lt;p&gt;最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/07/20/前端实践-react手写登陆注册/&name=前端实践-react手写登陆注册&description=&lt;p&gt;最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。本篇文章只提供大致的思路。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -235,7 +238,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2019 Zixuan Zheng
+    Copyright &copy; 2020 Zixuan Zheng
   </div>
   <div class="footer-right">
     <nav>
@@ -270,20 +273,5 @@
 <!-- Disqus Comments -->
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

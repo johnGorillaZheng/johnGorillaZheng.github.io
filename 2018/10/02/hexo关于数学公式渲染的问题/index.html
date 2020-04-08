@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="旋空间">
 <meta property="og:description" content="非常遗憾地把主题从apollo换成了Daily，本人其实更喜欢apollo那种简洁感。至于为何要换，归根结底是因为突然发现hexo的jade渲染器与mathjax渲染器起了冲突，导致只要有mathjax出现的页面，数学公式完全出不来。毕竟，以后应该会写不少跟数据相关的东西，数学肯定是必不可少。昨天花了一晚上总算是又折腾好了。下面来讲一下最简洁的一个教程。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-11T07:40:24.902Z">
+<meta property="og:updated_time" content="2019-07-11T07:40:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo关于数学公式渲染的问题">
 <meta name="twitter:description" content="非常遗憾地把主题从apollo换成了Daily，本人其实更喜欢apollo那种简洁感。至于为何要换，归根结底是因为突然发现hexo的jade渲染器与mathjax渲染器起了冲突，导致只要有mathjax出现的页面，数学公式完全出不来。毕竟，以后应该会写不少跟数据相关的东西，数学肯定是必不可少。昨天花了一晚上总算是又折腾好了。下面来讲一下最简洁的一个教程。">
@@ -48,7 +48,8 @@
     
 </head>
 
-<body class="max-width mx-auto px3 ltr">    
+<body class="max-width mx-auto px3 ltr">
+    
       <div id="header-post">
   <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
@@ -212,7 +213,7 @@
         
         <footer id="footer">
   <div class="footer-left">
-    Copyright &copy; 2019 Zixuan Zheng
+    Copyright &copy; 2020 Zixuan Zheng
   </div>
   <div class="footer-right">
     <nav>
@@ -247,20 +248,5 @@
 <!-- Disqus Comments -->
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
