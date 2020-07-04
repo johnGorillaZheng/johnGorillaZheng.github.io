@@ -140,7 +140,6 @@
   <div class="content" itemprop="articleBody">
     <p>最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。本篇文章只提供大致的思路。</p>
 <a id="more"></a>
-
 <h2 id="大体思路"><a href="#大体思路" class="headerlink" title="大体思路"></a>大体思路</h2><p>对于第一次注册与登陆的用户，其待开发的事情包括：</p>
 <ol>
 <li><p>根据具体需求创建表单，并通过axios实现表单内容上传至后端。</p>
@@ -164,22 +163,18 @@
 <p> 如果cookie被设置为可被js访问，那么js将访问到一个字符串，其中含有所有cookie的内容。由于cookie的添加基本上由后端response中header的set-cookie这个字段完成，故一般的操作为查询与删除。</p>
 <p> cookie的查找主要是对字符串进行操作，过程比较简单，思路略。。。</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> hasCookie = <span class="function"><span class="params">str</span> =&gt;</span></span><br><span class="line"><span class="built_in">document</span>.cookie.split(<span class="string">';'</span>).some(<span class="function"><span class="params">token</span> =&gt;</span> token.indexOf(str) !== <span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
-
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getCookie = <span class="function"><span class="params">str</span> =&gt;</span> &#123;</span><br><span class="line"><span class="keyword">const</span> cookies = <span class="built_in">document</span>.cookie.split(<span class="string">';'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> token <span class="keyword">of</span> cookies) &#123;</span><br><span class="line">    <span class="keyword">if</span> (token.indexOf(str) !== <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> token.split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p> cookie的清除主要思路是重新设置其过期时间，使之早于当前时间，让浏览器自己删掉cookie。</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> logout = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> current = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    current.setTime(current.getTime() - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> cookies = <span class="built_in">document</span>.cookie.split(<span class="string">';'</span>);</span><br><span class="line"></span><br><span class="line">    cookies.forEach(<span class="function"><span class="params">cookie</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> name = cookie.trim().split(<span class="string">'='</span>)[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> value = cookie.trim().split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">const</span> time = current.toGMTString();</span><br><span class="line">    <span class="built_in">document</span>.cookie = <span class="string">`<span class="subst">$&#123;name&#125;</span>=<span class="subst">$&#123;value&#125;</span>;expires=<span class="subst">$&#123;time&#125;</span>;path=/`</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">window</span>.location.href = <span class="string">'/'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>localstorage的操作</p>
 <p> localstorage自己已经集成了添加，获取以及清除所有的功能，调用即可，至于取到的字符串，则根据实际情况进行操作。</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">'key'</span>, <span class="string">'value'</span>);</span><br><span class="line">localStorage.getItem(<span class="string">'key'</span>);</span><br><span class="line">localStorage.clear();</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 <h2 id="生命周期的操作"><a href="#生命周期的操作" class="headerlink" title="生命周期的操作"></a>生命周期的操作</h2><p>大体思路是在组件挂载阶段就进行登陆状态的判定，使导航栏根据判定结果决定渲染的东西。比如导航栏是渲染登陆注册的链接，还是用户选项的下拉菜单。</p>
 <p>这里用functional component来实现，比较简洁。以下只是一个示例，在实际的操作中，判断是否登陆的函数可能会需要与redux相结合，同时，登陆的判断也可用于有登陆要求的页面渲染，可以与reacter dom router相结合。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Sample</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> [isLoggin, setIsLoggin] = useState(<span class="literal">false</span>);</span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        setIsLoggin(!!getCookies(<span class="string">'username'</span>) || !!localStorage.getItem(<span class="string">'username'</span>));</span><br><span class="line">    &#125;, []));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        &#123;isLoggin ? <span class="xml"><span class="tag">&lt;<span class="name">ComponentLogin</span> /&gt;</span> : <span class="tag">&lt;<span class="name">ComponentNotLogin</span> /&gt;</span>&#125;</span></span><br><span class="line"><span class="xml">    );</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="表单的创建与发送"><a href="#表单的创建与发送" class="headerlink" title="表单的创建与发送"></a>表单的创建与发送</h2><p>这个部分可以参考以后写的表单数据发送的内容。敬请期待。</p>
 <p>关于cookie的相关信息，也敬请期待。</p>
 
@@ -286,6 +281,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>

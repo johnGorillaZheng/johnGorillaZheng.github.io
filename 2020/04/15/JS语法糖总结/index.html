@@ -140,30 +140,23 @@
   <div class="content" itemprop="articleBody">
     <p>最近的实习中大量运用到一些JS的骚操作，现在把碰到的一些用法进行一下总结。</p>
 <a id="more"></a>
-
 <p>我定义如下图的对象，方便下面的讲解</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> graph = &#123;</span><br><span class="line">  name: <span class="string">'sample'</span>,</span><br><span class="line">  nodes: &#123;</span><br><span class="line">    Beijing: &#123;</span><br><span class="line">      label: <span class="string">'BJ'</span>,</span><br><span class="line">      value: <span class="number">1</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    Tianjin: &#123;</span><br><span class="line">      label: <span class="string">'TJ'</span>,</span><br><span class="line">      value: <span class="number">2</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  links: &#123;</span><br><span class="line">    Jingjin: &#123;</span><br><span class="line">      <span class="keyword">from</span>: <span class="string">'Beijing'</span>,</span><br><span class="line">      to: <span class="string">'Tianjin'</span>,</span><br><span class="line">      weight: <span class="number">10</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="参数解构"><a href="#参数解构" class="headerlink" title="参数解构"></a>参数解构</h2><p>通过使用<code>{}</code>,我们可以更简洁地进行对象属性的引用</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是过去的写法</span></span><br><span class="line"><span class="keyword">const</span> nodes = graph.nodes;</span><br><span class="line"><span class="comment">// 这是ES6以后的写法，可以进行多次引用</span></span><br><span class="line"><span class="keyword">const</span> &#123; nodes, links &#125; = graph;</span><br><span class="line"><span class="comment">// 也可以进行层级引用, 但只能取出每个块内最内的元素，下面只能取出北京</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">nodes</span>: &#123; Beijing &#125; &#125; = graph;</span><br><span class="line"><span class="comment">// 可以进行另赋值</span></span><br><span class="line"><span class="keyword">const</span> &#123; <span class="attr">nodes</span>: cities &#125; = graph;</span><br></pre></td></tr></table></figure>
-
 <h2 id="拓展运算符与剩余参数"><a href="#拓展运算符与剩余参数" class="headerlink" title="拓展运算符与剩余参数..."></a>拓展运算符与剩余参数<code>...</code></h2><p>这里摘抄一下MDN的说法,</p>
 <blockquote>
 <p>展开语法(Spread syntax), 可以在函数调用/数组构造时, 将数组表达式或者string在语法层面展开；还可以在构造字面量对象时, 将对象表达式按key-value的方式展开。(译者注: 字面量一般指 [1, 2, 3] 或者 {name: “mdn”} 这种简洁的构造方式)</p>
 </blockquote>
 <h3 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h3><h3 id="数组拷贝"><a href="#数组拷贝" class="headerlink" title="数组拷贝"></a>数组拷贝</h3><p>基础用法</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="comment">// 以下就会生成 [1,2,3,1,2,3]</span></span><br><span class="line"><span class="keyword">const</span> arr2 = [...arr1, ...arr1];</span><br></pre></td></tr></table></figure>
-
 <p>通过展开运算符，我们可以更简单地构建在数组任意位置添加/删除元素地函数.当然，下面地例子会返回一个新的数组</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> add = <span class="function">(<span class="params">arr, index, val</span>) =&gt;</span> [</span><br><span class="line">  ...arr.slice(<span class="number">0</span>, index),</span><br><span class="line">  val,</span><br><span class="line">  ...arr.slice(index + <span class="number">1</span>,)</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> del = <span class="function">(<span class="params">arr, index</span>) =&gt;</span> [</span><br><span class="line">  ...arr.slice(<span class="number">0</span>, index),</span><br><span class="line">  ...arr.slice(index + <span class="number">1</span>,)</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-
 <h3 id="初始化对象"><a href="#初始化对象" class="headerlink" title="初始化对象"></a>初始化对象</h3><p>前面说到，展开运算符会将对象表达式按key-value的方式展开，这点在声明一个“继承”自原有对象的新对象特别好用，比如</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> newGraph = &#123;</span><br><span class="line">  ...graph,</span><br><span class="line">  label: <span class="string">'new'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>此时声明的<code>newGraph</code>就会获得<code>graph</code>的所有属性且值相同，并且获得新属性<code>label</code>，但注意，这种拷贝是浅拷贝，（不拷贝<code>__prototype</code>）</p>
 <h2 id="可计算的属性名"><a href="#可计算的属性名" class="headerlink" title="可计算的属性名"></a>可计算的属性名</h2><p>如果需要动态地进行对象读写，比如同时写入新的键值对</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> city = <span class="string">'Changsha'</span>;</span><br><span class="line"><span class="keyword">const</span> newGraph = &#123;</span><br><span class="line">  ...graph,</span><br><span class="line">  [city]: &#123;</span><br><span class="line">    label: <span class="string">'CS'</span>,</span><br><span class="line">    value: <span class="number">3</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>如此可以动态地改变对象内部地键值，即采用<code>[key]:value</code>这种形式去写。</p>
 
   </div>
@@ -269,6 +262,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>

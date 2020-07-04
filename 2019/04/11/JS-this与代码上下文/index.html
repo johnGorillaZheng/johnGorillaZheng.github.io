@@ -94,7 +94,7 @@
   <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/04/11/JS-this与代码上下文/&title=JS-this与代码上下文 "><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/04/11/JS-this与代码上下文/&title=JS-this与代码上下文 "><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/04/11/JS-this与代码上下文/&title=JS-this与代码上下文 "><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/11/JS-this与代码上下文/&name=JS-this与代码上下文 &description=&lt;p&gt;这一篇博客将会探讨js中this对象在不同环境中的表现&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/11/JS-this与代码上下文/&name=JS-this与代码上下文 &description=&lt;p&gt;这一篇博客将会探讨js中this对象在不同环境中的表现&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -138,26 +138,19 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>这一篇博客将会探讨js中this对象在不同环境中的表现</p>
-<a id="more"></a>
-
+    <p>这一篇博客将会探讨js中this对象在不同环境中的表现<br><a id="more"></a></p>
 <h2 id="1-指向本体还是全局"><a href="#1-指向本体还是全局" class="headerlink" title="1. 指向本体还是全局?"></a>1. 指向本体还是全局?</h2><p>假设我们有如下的函数，（很明显是个构造函数）</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, id</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.id = id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>如果我们直接通过函数调用的方法，那么此时应当分类讨论，如果在非严格模式下，这里的this相当于window对象，而如果是严格模式，则是undefined。</p>
 <p>如果我们是通过new一个对象的方法，那么在新生成的对象里，this毫无疑问就应当指向当前对象了。值得注意的是，如果构造函数有返回值的话，当返回值为简单类型时，会忽略返回值，如果是对象，那么new出来的对象将会是这个返回来的对象，原因会在第三节讨论。</p>
 <h2 id="2-在普通函数以及箭头函数中this的用法"><a href="#2-在普通函数以及箭头函数中this的用法" class="headerlink" title="2. 在普通函数以及箭头函数中this的用法"></a>2. 在普通函数以及箭头函数中this的用法</h2><p>对于普通函数来说，如果在对象中进行函数定义，作为一个对象的属性，这时this会自动绑定上级对象，但在函数中再进行函数定义的话，此时这个函数又将变成之前构造函数那种情况，this指向window或undefined。需要在函数外先将this进行赋值操作，再对新变量进行调用。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    birth: <span class="number">1990</span>,</span><br><span class="line">    getAge: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="keyword">this</span>.birth; <span class="comment">// 1990</span></span><br><span class="line">        <span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear() - <span class="keyword">this</span>.birth; <span class="comment">// this指向window或undefined</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> fn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.getAge()  <span class="comment">//NaN</span></span><br></pre></td></tr></table></figure>
-
 <p>对于箭头函数来说，函数体内的this对象，就是定义时所在的对象，对于如下例子来说，就是getAge的this，也就是指向obj</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    birth: <span class="number">1990</span>,</span><br><span class="line">    getAge: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="keyword">this</span>.birth; <span class="comment">// 1990</span></span><br><span class="line">        <span class="keyword">var</span> fn = <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">new</span> <span class="built_in">Date</span>().getFullYear() - <span class="keyword">this</span>.birth; <span class="comment">// this指向obj对象</span></span><br><span class="line">        <span class="keyword">return</span> fn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj.getAge(); <span class="comment">// 一个数字</span></span><br></pre></td></tr></table></figure>
-
 <p>再举个例子，此时作为setInterval函数的参数，箭头函数的定义范围其实是Person，如果new一个对象的话，this指向该对象，如果直接调用，则是指向window或undefined</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.age = <span class="number">0</span>;</span><br><span class="line">    setInterval(<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="built_in">console</span>.log(<span class="keyword">this</span>.age)&#125;, <span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>再举一个绑定事件监听的案例，代码如下，此时作为addEventListener的参数，箭头函数的定义范围是init，此时this指向handler，如果不这么写，那么this的上下文将指定为使用范围，也就是document，此时就会报undefined的错误。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> handler = &#123;</span><br><span class="line">    id: <span class="string">'123456'</span>,</span><br><span class="line">    init: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">document</span>.addEventListener(<span class="string">'click'</span>, event =&gt; <span class="keyword">this</span>.doSomething(event))</span><br><span class="line">    &#125;,</span><br><span class="line">    doSomething: <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(event)</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>同时，箭头函数不能使用call，apply方法。</p>
 <h2 id="3-this对象的改变-call-apply-bind方法"><a href="#3-this对象的改变-call-apply-bind方法" class="headerlink" title="3. this对象的改变 - call, apply, bind方法"></a>3. this对象的改变 - call, apply, bind方法</h2><p>之前在将js的继承的时候讲到过call与apply方法，它们会根据传入的第一个参数来指定函数上下文，然后在根据后面的参数函数在执行过程中的真正实参，不同的实call是一个一个的参数，而apply是一个数组，里面记录所有参数。</p>
 <p>bind函数功能与前两者不同，它会生成一个新的函数，其内容与原函数保持一致，并绑定在传入的对象上。</p>
@@ -205,7 +198,7 @@
   <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/04/11/JS-this与代码上下文/&title=JS-this与代码上下文 "><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/04/11/JS-this与代码上下文/&title=JS-this与代码上下文 "><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/04/11/JS-this与代码上下文/&title=JS-this与代码上下文 "><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/11/JS-this与代码上下文/&name=JS-this与代码上下文 &description=&lt;p&gt;这一篇博客将会探讨js中this对象在不同环境中的表现&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/11/JS-this与代码上下文/&name=JS-this与代码上下文 &description=&lt;p&gt;这一篇博客将会探讨js中this对象在不同环境中的表现&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -272,6 +265,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>

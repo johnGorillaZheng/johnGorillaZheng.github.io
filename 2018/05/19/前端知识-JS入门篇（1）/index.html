@@ -94,7 +94,7 @@
   <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&name=前端知识-JS入门篇（1）&description=&lt;p&gt;这个系列将讲解一些基础js知识。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&name=前端知识-JS入门篇（1）&description=&lt;p&gt;这个系列将讲解一些基础js知识。&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -138,15 +138,10 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>这个系列将讲解一些基础js知识。</p>
-<a id="more"></a>
-
+    <p>这个系列将讲解一些基础js知识。<br><a id="more"></a></p>
 <h1 id="最基础"><a href="#最基础" class="headerlink" title="最基础"></a>最基础</h1><h2 id="一般的变量定义"><a href="#一般的变量定义" class="headerlink" title="一般的变量定义"></a>一般的变量定义</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = ...;</span><br><span class="line"><span class="comment">//javascript不用强调int，float，double等类型，直接一个var解决</span></span><br><span class="line"><span class="keyword">let</span> b = ...;</span><br><span class="line"><span class="comment">//ES5开始可以用let来进行变量的定义，let可以让变量只作用于它所属的block及其子block，防止变量提示这种诡异的事情，提升代码维护性</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="数组的定义"><a href="#数组的定义" class="headerlink" title="数组的定义"></a>数组的定义</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="built_in">Array</span>(length);    <span class="comment">//初始化一个长度为length的数组,length也可以不填</span></span><br><span class="line"><span class="keyword">var</span> arr = <span class="built_in">Array</span>(para_a,para_b,...); <span class="comment">//初始化所有元素</span></span><br><span class="line"><span class="keyword">var</span> arr = [para_a,para_b,...]; <span class="comment">//也可以直接不声明Array，数组的每个元素可以是不同的数据类型</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="关联数组"><a href="#关联数组" class="headerlink" title="关联数组"></a>关联数组</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lennon = <span class="built_in">Array</span>();</span><br><span class="line">lennon[<span class="string">"name"</span>] = <span class="string">"John"</span>;</span><br><span class="line">lennon[<span class="string">"year"</span>] = <span class="number">1940</span>;</span><br><span class="line">lennon[<span class="string">"living"</span>] = <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
-
 <p>注意到，这个跟php中的关联数组有异曲同工之妙。</p>
 <p>运算符，条件判断，循环跟其他语言基本一样，不赘述</p>
 <h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="对象的声明"><a href="#对象的声明" class="headerlink" title="对象的声明"></a>对象的声明</h3><p>个人感觉个人javascript中对象的声明相比较java这种打着面向对象大旗的语言来讲相当随意，闲话不多说，开始解说。</p>
@@ -154,27 +149,22 @@
 <ol>
 <li><p>构造函数法</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Tank</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">"T-34"</span>;</span><br><span class="line">    <span class="keyword">this</span>.commander = <span class="string">"Zhukov"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//定义类函数</span></span><br><span class="line">Tank.prototype.fire = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"biubiubiu"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//总感觉这种不把类函数写在类里的写法是异端</span></span><br></pre></td></tr></table></figure>
-
 <p> 生成实例时</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tank = <span class="keyword">new</span> Tank();</span><br><span class="line"><span class="built_in">console</span>.log(tank.name);   <span class="comment">//输出结果T-34</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>Object.create()方法</p>
 <p> 说明：在这种定义类的方法中，“类”被看作是一个对象，而不是函数。</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Tank = &#123;</span><br><span class="line">    name = <span class="string">"T-34"</span>;</span><br><span class="line">    commander = <span class="string">"Zhukov"</span>;</span><br><span class="line">    fire : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"biubiubiu"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这个封装其实看的就舒服多了</span></span><br></pre></td></tr></table></figure>
-
 <p> 生成实例时，直接用Object.create()生成实例，不用new</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tank = <span class="built_in">Object</span>.create(Tank);</span><br><span class="line">alert(tank.name);</span><br><span class="line">tank.fire();</span><br></pre></td></tr></table></figure>
-
 <p> 注意，这种写法在老式浏览器中不一定能用，如欲使用，需调用一下代码</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Object</span>.create) &#123;</span><br><span class="line">    <span class="built_in">Object</span>.create = <span class="function"><span class="keyword">function</span> (<span class="params">o</span>) </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">        F.prototype = o;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>极简主义法</p>
 <p> 这种函数的写法，定义一个构造函数createNew()，然后把所有的属性，类函数放进去，一个类声明只有一个函数，一个函数将所有属性与函数说清楚，故曰极简主义。</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Tank = &#123;</span><br><span class="line">    createNew : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> tank = &#123;&#125;;</span><br><span class="line">        tank.name = <span class="string">"T-34"</span>;</span><br><span class="line">        tank.fire = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"biubiubiu"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> tank;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p> 生成实例时，直接调用createNew()方法</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tank = Tank.createNew();</span><br><span class="line">tank.fire();</span><br></pre></td></tr></table></figure>
-
 </li>
 </ol>
 
@@ -214,7 +204,7 @@
   <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&name=前端知识-JS入门篇（1）&description=&lt;p&gt;这个系列将讲解一些基础js知识。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&name=前端知识-JS入门篇（1）&description=&lt;p&gt;这个系列将讲解一些基础js知识。&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -281,6 +271,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>

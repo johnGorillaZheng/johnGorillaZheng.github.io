@@ -141,7 +141,6 @@
     <h2 id="Cookie是怎么工作的"><a href="#Cookie是怎么工作的" class="headerlink" title="Cookie是怎么工作的"></a>Cookie是怎么工作的</h2><p>按照我目前做过的工作来说，cookie的工作流程大体上包括创建，保存与销毁。</p>
 <p>实际工作中，cookie往往是会在HTTP Response的Header中对浏览器进行设置，在Header中，会加上一个 Set-cookie的字段，例如下面这个例子，</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.0 OK</span><br><span class="line">Set-cookie: id=<span class="string">'1234'</span>; domain=<span class="string">'example.com'</span>; ...</span><br><span class="line">Content-type: text/html</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
 <p>这样就给目标用户贴上了一条cookie信息。cookie具体包括以下的属性，</p>
 <ul>
 <li><p>NAME=VALUE</p>
@@ -158,12 +157,9 @@
 </li>
 </ul>
 <h2 id="Cookie的浏览器端JS基本操作-增删改查"><a href="#Cookie的浏览器端JS基本操作-增删改查" class="headerlink" title="Cookie的浏览器端JS基本操作 - 增删改查"></a>Cookie的浏览器端JS基本操作 - 增删改查</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> hasCookie = <span class="function"><span class="params">str</span> =&gt;</span></span><br><span class="line"><span class="built_in">document</span>.cookie.split(<span class="string">';'</span>).some(<span class="function"><span class="params">token</span> =&gt;</span> token.indexOf(str) !== <span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getCookie = <span class="function"><span class="params">str</span> =&gt;</span> &#123;</span><br><span class="line"><span class="keyword">const</span> cookies = <span class="built_in">document</span>.cookie.split(<span class="string">';'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> token <span class="keyword">of</span> cookies) &#123;</span><br><span class="line">    <span class="keyword">if</span> (token.indexOf(str) !== <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> token.split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p>cookie的清除主要思路是重新设置其过期时间，使之早于当前时间，让浏览器自己删掉cookie。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> logout = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> current = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    current.setTime(current.getTime() - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> cookies = <span class="built_in">document</span>.cookie.split(<span class="string">';'</span>);</span><br><span class="line"></span><br><span class="line">    cookies.forEach(<span class="function"><span class="params">cookie</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> name = cookie.trim().split(<span class="string">'='</span>)[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> value = cookie.trim().split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">const</span> time = current.toGMTString();</span><br><span class="line">    <span class="built_in">document</span>.cookie = <span class="string">`<span class="subst">$&#123;name&#125;</span>=<span class="subst">$&#123;value&#125;</span>;expires=<span class="subst">$&#123;time&#125;</span>;path=/`</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">window</span>.location.href = <span class="string">'/'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 
   </div>
 </article>
@@ -268,6 +264,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>

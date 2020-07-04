@@ -94,7 +94,7 @@
   <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/10/02/hexo关于数学公式渲染的问题/&title=hexo关于数学公式渲染的问题"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/10/02/hexo关于数学公式渲染的问题/&title=hexo关于数学公式渲染的问题"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/10/02/hexo关于数学公式渲染的问题/&title=hexo关于数学公式渲染的问题"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/10/02/hexo关于数学公式渲染的问题/&name=hexo关于数学公式渲染的问题&description=&lt;p&gt;非常遗憾地把主题从apollo换成了Daily，本人其实更喜欢apollo那种简洁感。至于为何要换，归根结底是因为突然发现hexo的jade渲染器与mathjax渲染器起了冲突，导致只要有mathjax出现的页面，数学公式完全出不来。毕竟，以后应该会写不少跟数据相关的东西，数学肯定是必不可少。昨天花了一晚上总算是又折腾好了。下面来讲一下最简洁的一个教程。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/10/02/hexo关于数学公式渲染的问题/&name=hexo关于数学公式渲染的问题&description=&lt;p&gt;非常遗憾地把主题从apollo换成了Daily，本人其实更喜欢apollo那种简洁感。至于为何要换，归根结底是因为突然发现hexo的jade渲染器与mathjax渲染器起了冲突，导致只要有mathjax出现的页面，数学公式完全出不来。毕竟，以后应该会写不少跟数据相关的东西，数学肯定是必不可少。昨天花了一晚上总算是又折腾好了。下面来讲一下最简洁的一个教程。&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -138,24 +138,19 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>非常遗憾地把主题从apollo换成了Daily，本人其实更喜欢apollo那种简洁感。至于为何要换，归根结底是因为突然发现hexo的jade渲染器与mathjax渲染器起了冲突，导致只要有mathjax出现的页面，数学公式完全出不来。毕竟，以后应该会写不少跟数据相关的东西，数学肯定是必不可少。昨天花了一晚上总算是又折腾好了。下面来讲一下最简洁的一个教程。</p>
-<a id="more"></a>
-
+    <p>非常遗憾地把主题从apollo换成了Daily，本人其实更喜欢apollo那种简洁感。至于为何要换，归根结底是因为突然发现hexo的jade渲染器与mathjax渲染器起了冲突，导致只要有mathjax出现的页面，数学公式完全出不来。毕竟，以后应该会写不少跟数据相关的东西，数学肯定是必不可少。昨天花了一晚上总算是又折腾好了。下面来讲一下最简洁的一个教程。<br><a id="more"></a></p>
 <h2 id="操作之前"><a href="#操作之前" class="headerlink" title="操作之前"></a>操作之前</h2><p>请先检查一下自己目前在用的主题是用啥写的，如果是jade写的话，建议更换，毕竟我就没有把Apollo的折腾好（明明之前没问题的，不知是手贱更新还是咋了）。如果求稳的话，建议换成用ejs写的主题，毕竟这是官方教程用的。那些号称专门用于hexo渲染的工具如果这种最主要的功能要起冲突的话，那就真是没辙了。</p>
 <h2 id="开始操作"><a href="#开始操作" class="headerlink" title="开始操作"></a>开始操作</h2><p>目前我只尝试过安装过hexo-math以及hexo-renderer-mathjax这两个插件，就本人的实践效果看，后者比较好。首先，按照网上其他教程说的，先要进行如下操作。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
-
 <blockquote>
 <p>这是因为hexo自带的marked并不支持渲染数学公式。</p>
 </blockquote>
 <p>好吧，我不是很懂其中机制，但顺着来确实成功了。而且连其中的格式化规则也不用改。</p>
 <p>安装hexo-renderer-mathjax插件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-mathjax --save</span><br></pre></td></tr></table></figure>
-
 <p>来自2019年3月17日的更新</p>
 <p>再完成hexo-renderer-mathjax的安装后，需要进入blog/node_modules/hexo-renderer-mathjax/mathjax.html文件，修改其中的script标签</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
 <p>然后在Daily，landscape等主题就可以直接开始写数学公式了。</p>
 
   </div>
@@ -194,7 +189,7 @@
   <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/10/02/hexo关于数学公式渲染的问题/&title=hexo关于数学公式渲染的问题"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/10/02/hexo关于数学公式渲染的问题/&title=hexo关于数学公式渲染的问题"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/10/02/hexo关于数学公式渲染的问题/&title=hexo关于数学公式渲染的问题"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/10/02/hexo关于数学公式渲染的问题/&name=hexo关于数学公式渲染的问题&description=&lt;p&gt;非常遗憾地把主题从apollo换成了Daily，本人其实更喜欢apollo那种简洁感。至于为何要换，归根结底是因为突然发现hexo的jade渲染器与mathjax渲染器起了冲突，导致只要有mathjax出现的页面，数学公式完全出不来。毕竟，以后应该会写不少跟数据相关的东西，数学肯定是必不可少。昨天花了一晚上总算是又折腾好了。下面来讲一下最简洁的一个教程。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/10/02/hexo关于数学公式渲染的问题/&name=hexo关于数学公式渲染的问题&description=&lt;p&gt;非常遗憾地把主题从apollo换成了Daily，本人其实更喜欢apollo那种简洁感。至于为何要换，归根结底是因为突然发现hexo的jade渲染器与mathjax渲染器起了冲突，导致只要有mathjax出现的页面，数学公式完全出不来。毕竟，以后应该会写不少跟数据相关的东西，数学肯定是必不可少。昨天花了一晚上总算是又折腾好了。下面来讲一下最简洁的一个教程。&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -261,6 +256,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>

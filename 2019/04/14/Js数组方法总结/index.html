@@ -94,7 +94,7 @@
   <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/04/14/Js数组方法总结/&title=Js数组方法总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/04/14/Js数组方法总结/&title=Js数组方法总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/04/14/Js数组方法总结/&title=Js数组方法总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/14/Js数组方法总结/&name=Js数组方法总结&description=&lt;p&gt;本篇博客将总结js中常见的数组方法&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/14/Js数组方法总结/&name=Js数组方法总结&description=&lt;p&gt;本篇博客将总结js中常见的数组方法&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -138,9 +138,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>本篇博客将总结js中常见的数组方法</p>
-<a id="more"></a>
-
+    <p>本篇博客将总结js中常见的数组方法<br><a id="more"></a></p>
 <h2 id="1-基础函数"><a href="#1-基础函数" class="headerlink" title="1. 基础函数"></a>1. 基础函数</h2><ol>
 <li><code>push</code><br>数组尾部添加元素，改变原数组，返回该数组的长度，可视为入栈</li>
 <li><code>unshift</code><br>在数组头部添加元素，改变原数组，返回该数组的长度，可视为入队</li>
@@ -159,16 +157,14 @@
 <li><code>sort(function compare(a, b))</code><br>该函数将对原数组进行排序处理，对与如何排序，做如下讨论，</li>
 </ol>
 <ul>
-<li><p>如果<code>compare() &lt; 0</code>, a应当出现在b前面</p>
-</li>
-<li><p>如果<code>compare() &gt; 0</code>, b应当出现在a前面</p>
-</li>
+<li>如果<code>compare() &lt; 0</code>, a应当出现在b前面</li>
+<li>如果<code>compare() &gt; 0</code>, b应当出现在a前面</li>
 <li><p>如果<code>compare() = 0</code>, b与a出现在相同位置</p>
 <p>  这里不仅可以针对纯数字字符串的函数进行判断，我们同样可以对对象进行排序，对比对象中的比较元素（比如ID），设置返回值正负，从而实现排序的目的。</p>
 </li>
 </ul>
-<ol start="8">
-<li><code>reduce(function callback(accumulator, currentValue, currentIndex, array))</code> 将数组中的所有元素进行callback的处理，同时会对之前的结果进行累计的处理，也就是说有一种这样的即视感$f(x_i)=\sum_{i−1}^{i=0}f(x)+x_i$,但具体是加法还是其他操作就取决于callback了。</li>
+<ol>
+<li><code>reduce(function callback(accumulator, currentValue, currentIndex, array))</code> 将数组中的所有元素进行callback的处理，同时会对之前的结果进行累计的处理，也就是说有一种这样的即视感$f(x<em>i)=\sum</em>{i−1}^{i=0}f(x)+x_i$,但具体是加法还是其他操作就取决于callback了。</li>
 </ol>
 
   </div>
@@ -207,7 +203,7 @@
   <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/04/14/Js数组方法总结/&title=Js数组方法总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/04/14/Js数组方法总结/&title=Js数组方法总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
   <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/04/14/Js数组方法总结/&title=Js数组方法总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/14/Js数组方法总结/&name=Js数组方法总结&description=&lt;p&gt;本篇博客将总结js中常见的数组方法&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/04/14/Js数组方法总结/&name=Js数组方法总结&description=&lt;p&gt;本篇博客将总结js中常见的数组方法&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -274,6 +270,7 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
 </script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
 </body>
 </html>
