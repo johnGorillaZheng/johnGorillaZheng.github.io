@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="这里会记录我在 leetcode 刷题中“链表“这一块做的题的记录以及想法。会不定期更新，速度取决于做题的速度以及心情。一些题一开始是用 java 写的，这里会统一换成 js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS题目集锦-链表">
+<meta property="og:url" content="http://yoursite.com/2018/09/14/JS题目集锦-链表/index.html">
+<meta property="og:site_name" content="旋空间">
+<meta property="og:description" content="这里会记录我在 leetcode 刷题中“链表“这一块做的题的记录以及想法。会不定期更新，速度取决于做题的速度以及心情。一些题一开始是用 java 写的，这里会统一换成 js">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-11T09:38:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS题目集锦-链表">
+<meta name="twitter:description" content="这里会记录我在 leetcode 刷题中“链表“这一块做的题的记录以及想法。会不定期更新，速度取决于做题的速度以及心情。一些题一开始是用 java 写的，这里会统一换成 js">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+          
+        
+    
+    <!-- title -->
+    <title>JS题目集锦-链表</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/09/14/JS数据结构-图/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/09/13/python实现kmeans算法/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/09/14/JS题目集锦-链表/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&text=JS题目集锦-链表"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&title=JS题目集锦-链表"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&is_video=false&description=JS题目集锦-链表"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JS题目集锦-链表&body=Check out this article: http://yoursite.com/2018/09/14/JS题目集锦-链表/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&title=JS题目集锦-链表"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&title=JS题目集锦-链表"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&title=JS题目集锦-链表"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&title=JS题目集锦-链表"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&name=JS题目集锦-链表&description=&lt;p&gt;这里会记录我在 leetcode 刷题中“链表“这一块做的题的记录以及想法。会不定期更新，速度取决于做题的速度以及心情。一些题一开始是用 java 写的，这里会统一换成 js&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目合集"><span class="toc-number">1.</span> <span class="toc-text">题目合集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#判断是否是回文-col：234"><span class="toc-number">1.1.</span> <span class="toc-text">判断是否是回文 col：234</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链表反转-col：206"><span class="toc-number">1.2.</span> <span class="toc-text">链表反转 col：206</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链表按给定数-k-向右旋转-k-次-col：61"><span class="toc-number">1.3.</span> <span class="toc-text">链表按给定数 k 向右旋转 k 次 col：61</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在已排号序的单链表中去除重复项-col：83"><span class="toc-number">1.4.</span> <span class="toc-text">在已排号序的单链表中去除重复项 col：83</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断是否有环-col：141"><span class="toc-number">1.5.</span> <span class="toc-text">判断是否有环 col：141</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两个链表相加-col：2"><span class="toc-number">1.6.</span> <span class="toc-text">两个链表相加 col：2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Next-Greater-Node-In-Linked-List-col-1019"><span class="toc-number">1.7.</span> <span class="toc-text">Next Greater Node In Linked List col: 1019</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Remove-Duplicates-from-Sorted-List-II-col-82"><span class="toc-number">1.8.</span> <span class="toc-text">Remove Duplicates from Sorted List II col:82</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        JS题目集锦-链表
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">旋空间</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-09-14T07:56:32.000Z" itemprop="datePublished">2018-09-14</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>这里会记录我在 leetcode 刷题中“链表“这一块做的题的记录以及想法。会不定期更新，速度取决于做题的速度以及心情。一些题一开始是用 java 写的，这里会统一换成 js</p>
+<a id="more"></a>
+
+<p>其中所有链表均为以下定义</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ListNode</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.val = val;</span><br><span class="line">    <span class="keyword">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="题目合集"><a href="#题目合集" class="headerlink" title="题目合集"></a>题目合集</h1><h2 id="判断是否是回文-col：234"><a href="#判断是否是回文-col：234" class="headerlink" title="判断是否是回文 col：234"></a>判断是否是回文 col：234</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPalindrome</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head === <span class="literal">null</span> || head.next === <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> compare_1 = [];</span><br><span class="line">    <span class="keyword">var</span> compare_2 = [];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (head !== <span class="literal">null</span>) &#123;</span><br><span class="line">        compare_1.push(head.val);</span><br><span class="line">        compare_2.unshift(head.val);</span><br><span class="line">        head = head.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; compare_1.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (compare_1[i] !== compare_2[i]) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="链表反转-col：206"><a href="#链表反转-col：206" class="headerlink" title="链表反转 col：206"></a>链表反转 col：206</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseList</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> current = head;</span><br><span class="line">    <span class="keyword">let</span> previous = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">while</span> (head != <span class="literal">null</span>) &#123;</span><br><span class="line">        current = head;</span><br><span class="line">        head = head.next;</span><br><span class="line">        current.next = previous;</span><br><span class="line">        previous = current;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> current;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="链表按给定数-k-向右旋转-k-次-col：61"><a href="#链表按给定数-k-向右旋转-k-次-col：61" class="headerlink" title="链表按给定数 k 向右旋转 k 次 col：61"></a>链表按给定数 k 向右旋转 k 次 col：61</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">rotateRight</span>(<span class="params">head, k</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!head || k == <span class="number">0</span> || !head.next) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> length = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> head_for_count = head;</span><br><span class="line">    <span class="keyword">while</span> (head_for_count != <span class="literal">null</span>) &#123;</span><br><span class="line">        length++;</span><br><span class="line">        head_for_count = head_for_count.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> sliceIndex = length - (k % length);</span><br><span class="line">    <span class="keyword">let</span> sliceNode = head;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">1</span>; i &lt; sliceIndex; i++) &#123;</span><br><span class="line">        sliceNode = sliceNode.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!sliceNode.next) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> resultNode = sliceNode.next;</span><br><span class="line">        <span class="keyword">let</span> endNode = resultNode;</span><br><span class="line">        <span class="keyword">while</span> (endNode.next) &#123;</span><br><span class="line">            endNode = endNode.next;</span><br><span class="line">        &#125;</span><br><span class="line">        endNode.next = head;</span><br><span class="line">        sliceNode.next = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">return</span> resultNode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="在已排号序的单链表中去除重复项-col：83"><a href="#在已排号序的单链表中去除重复项-col：83" class="headerlink" title="在已排号序的单链表中去除重复项 col：83"></a>在已排号序的单链表中去除重复项 col：83</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteDuplicates</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="literal">null</span>) <span class="keyword">return</span> head;</span><br><span class="line">    <span class="keyword">let</span> current = head;</span><br><span class="line">    <span class="keyword">while</span> (current.next != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (current.next.val == current.val) &#123;</span><br><span class="line">            current.next = current.next.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            current = current.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="判断是否有环-col：141"><a href="#判断是否有环-col：141" class="headerlink" title="判断是否有环 col：141"></a>判断是否有环 col：141</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasCycle</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="literal">null</span> || head.next == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    ListNode walker = head;</span><br><span class="line">    ListNode runner = head;</span><br><span class="line">    <span class="keyword">while</span> (runner.next != <span class="literal">null</span> &amp;&amp; runner.next.next != <span class="literal">null</span>) &#123;</span><br><span class="line">        walker = walker.next;</span><br><span class="line">        runner = runner.next.next;</span><br><span class="line">        <span class="keyword">if</span> (runner == walker) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="两个链表相加-col：2"><a href="#两个链表相加-col：2" class="headerlink" title="两个链表相加 col：2"></a>两个链表相加 col：2</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTwoNumbers</span>(<span class="params">l1, l2</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">let</span> current = result;</span><br><span class="line">    <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> mid = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="literal">null</span> || l2 != <span class="literal">null</span>) &#123;</span><br><span class="line">        sum += mid;</span><br><span class="line">        <span class="keyword">if</span> (l1 != <span class="literal">null</span>) &#123;</span><br><span class="line">            sum += l1.val;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l2 != <span class="literal">null</span>) &#123;</span><br><span class="line">            sum += l2.val;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        mid = sum &gt;= <span class="number">10</span> ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">        current.val = sum % <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">if</span> (l1 != <span class="literal">null</span> || l2 != <span class="literal">null</span>) &#123;</span><br><span class="line">            current.next = <span class="keyword">new</span> ListNode(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (l1 == <span class="literal">null</span> &amp;&amp; l2 == <span class="literal">null</span> &amp;&amp; mid == <span class="number">1</span>) &#123;</span><br><span class="line">            current.next = <span class="keyword">new</span> ListNode(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        current = current.next;</span><br><span class="line">        sum = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Next-Greater-Node-In-Linked-List-col-1019"><a href="#Next-Greater-Node-In-Linked-List-col-1019" class="headerlink" title="Next Greater Node In Linked List col: 1019"></a>Next Greater Node In Linked List col: 1019</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextLargerNodes</span> (<span class="params">head</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">let</span> current = head</span><br><span class="line">    <span class="keyword">let</span> result = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (current) &#123;</span><br><span class="line">        <span class="keyword">let</span> tmpPointer = current</span><br><span class="line">        <span class="keyword">let</span> tmp = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (tmpPointer) &#123;</span><br><span class="line">            <span class="keyword">if</span> (tmpPointer.val &gt; current.val)&#123;</span><br><span class="line">                tmp = tmpPointer.val</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            &#125;</span><br><span class="line">            tmpPointer = tmpPointer.next</span><br><span class="line">        &#125;</span><br><span class="line">        result.push(tmp)</span><br><span class="line">        current = current.next</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Remove-Duplicates-from-Sorted-List-II-col-82"><a href="#Remove-Duplicates-from-Sorted-List-II-col-82" class="headerlink" title="Remove Duplicates from Sorted List II col:82"></a>Remove Duplicates from Sorted List II col:82</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deleteDuplicates</span>(<span class="params">head</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!head || !head.next) <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (head) &#123;</span><br><span class="line">        <span class="keyword">let</span> pointer = head</span><br><span class="line">        <span class="keyword">while</span> (pointer.next) &#123;</span><br><span class="line">            <span class="keyword">if</span> (pointer.next.val == pointer.val) &#123;</span><br><span class="line">                pointer.next.remove = <span class="literal">true</span></span><br><span class="line">                pointer.remove = <span class="literal">true</span></span><br><span class="line">            &#125;</span><br><span class="line">            pointer = pointer.next</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> pointer2 = head</span><br><span class="line">        <span class="keyword">while</span> (pointer2 &amp;&amp; pointer2.next) &#123;</span><br><span class="line">            <span class="keyword">if</span> (pointer2.next.remove) &#123;</span><br><span class="line">                <span class="keyword">let</span> temp = pointer2.next</span><br><span class="line">                <span class="keyword">while</span>(temp &amp;&amp; temp.remove) &#123;</span><br><span class="line">                    temp = temp.next</span><br><span class="line">                &#125;</span><br><span class="line">                pointer2.next = temp</span><br><span class="line">            &#125;</span><br><span class="line">            pointer2 = pointer2.next</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> head.remove ? head.next : head</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#题目合集"><span class="toc-number">1.</span> <span class="toc-text">题目合集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#判断是否是回文-col：234"><span class="toc-number">1.1.</span> <span class="toc-text">判断是否是回文 col：234</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链表反转-col：206"><span class="toc-number">1.2.</span> <span class="toc-text">链表反转 col：206</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链表按给定数-k-向右旋转-k-次-col：61"><span class="toc-number">1.3.</span> <span class="toc-text">链表按给定数 k 向右旋转 k 次 col：61</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在已排号序的单链表中去除重复项-col：83"><span class="toc-number">1.4.</span> <span class="toc-text">在已排号序的单链表中去除重复项 col：83</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断是否有环-col：141"><span class="toc-number">1.5.</span> <span class="toc-text">判断是否有环 col：141</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两个链表相加-col：2"><span class="toc-number">1.6.</span> <span class="toc-text">两个链表相加 col：2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Next-Greater-Node-In-Linked-List-col-1019"><span class="toc-number">1.7.</span> <span class="toc-text">Next Greater Node In Linked List col: 1019</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Remove-Duplicates-from-Sorted-List-II-col-82"><span class="toc-number">1.8.</span> <span class="toc-text">Remove Duplicates from Sorted List II col:82</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/09/14/JS题目集锦-链表/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&text=JS题目集锦-链表"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&title=JS题目集锦-链表"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&is_video=false&description=JS题目集锦-链表"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JS题目集锦-链表&body=Check out this article: http://yoursite.com/2018/09/14/JS题目集锦-链表/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&title=JS题目集锦-链表"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&title=JS题目集锦-链表"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&title=JS题目集锦-链表"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&title=JS题目集锦-链表"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/09/14/JS题目集锦-链表/&name=JS题目集锦-链表&description=&lt;p&gt;这里会记录我在 leetcode 刷题中“链表“这一块做的题的记录以及想法。会不定期更新，速度取决于做题的速度以及心情。一些题一开始是用 java 写的，这里会统一换成 js&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Zixuan Zheng
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
