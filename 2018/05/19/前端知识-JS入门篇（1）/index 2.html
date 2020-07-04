@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="这个系列将讲解一些基础js知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端知识-JS入门篇（1）">
+<meta property="og:url" content="http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/index.html">
+<meta property="og:site_name" content="旋空间">
+<meta property="og:description" content="这个系列将讲解一些基础js知识。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-11T11:21:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端知识-JS入门篇（1）">
+<meta name="twitter:description" content="这个系列将讲解一些基础js知识。">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/logo.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+          
+        
+    
+    <!-- title -->
+    <title>前端知识-JS入门篇（1）</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/05/19/前端知识-JS入门篇（2）/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/04/18/前端知识-float的使用/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&text=前端知识-JS入门篇（1）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&is_video=false&description=前端知识-JS入门篇（1）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=前端知识-JS入门篇（1）&body=Check out this article: http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&name=前端知识-JS入门篇（1）&description=&lt;p&gt;这个系列将讲解一些基础js知识。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最基础"><span class="toc-number">1.</span> <span class="toc-text">最基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一般的变量定义"><span class="toc-number">1.1.</span> <span class="toc-text">一般的变量定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组的定义"><span class="toc-number">1.2.</span> <span class="toc-text">数组的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关联数组"><span class="toc-number">1.3.</span> <span class="toc-text">关联数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面向对象"><span class="toc-number">1.4.</span> <span class="toc-text">面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对象的声明"><span class="toc-number">1.4.1.</span> <span class="toc-text">对象的声明</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        前端知识-JS入门篇（1）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">旋空间</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2018-05-19T11:16:27.000Z" itemprop="datePublished">2018-05-19</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>这个系列将讲解一些基础js知识。</p>
+<a id="more"></a>
+
+<h1 id="最基础"><a href="#最基础" class="headerlink" title="最基础"></a>最基础</h1><h2 id="一般的变量定义"><a href="#一般的变量定义" class="headerlink" title="一般的变量定义"></a>一般的变量定义</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = ...;</span><br><span class="line"><span class="comment">//javascript不用强调int，float，double等类型，直接一个var解决</span></span><br><span class="line"><span class="keyword">let</span> b = ...;</span><br><span class="line"><span class="comment">//ES5开始可以用let来进行变量的定义，let可以让变量只作用于它所属的block及其子block，防止变量提示这种诡异的事情，提升代码维护性</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数组的定义"><a href="#数组的定义" class="headerlink" title="数组的定义"></a>数组的定义</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = <span class="built_in">Array</span>(length);    <span class="comment">//初始化一个长度为length的数组,length也可以不填</span></span><br><span class="line"><span class="keyword">var</span> arr = <span class="built_in">Array</span>(para_a,para_b,...); <span class="comment">//初始化所有元素</span></span><br><span class="line"><span class="keyword">var</span> arr = [para_a,para_b,...]; <span class="comment">//也可以直接不声明Array，数组的每个元素可以是不同的数据类型</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="关联数组"><a href="#关联数组" class="headerlink" title="关联数组"></a>关联数组</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lennon = <span class="built_in">Array</span>();</span><br><span class="line">lennon[<span class="string">"name"</span>] = <span class="string">"John"</span>;</span><br><span class="line">lennon[<span class="string">"year"</span>] = <span class="number">1940</span>;</span><br><span class="line">lennon[<span class="string">"living"</span>] = <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
+
+<p>注意到，这个跟php中的关联数组有异曲同工之妙。</p>
+<p>运算符，条件判断，循环跟其他语言基本一样，不赘述</p>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="对象的声明"><a href="#对象的声明" class="headerlink" title="对象的声明"></a>对象的声明</h3><p>个人感觉个人javascript中对象的声明相比较java这种打着面向对象大旗的语言来讲相当随意，闲话不多说，开始解说。</p>
+<p>既然说到面向对象，那么首先从类的定义开始讲起，javascript的类定义总共有3种，以下分别介绍3种定义方法以及相对应的对象声明方法</p>
+<ol>
+<li><p>构造函数法</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Tank</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="string">"T-34"</span>;</span><br><span class="line">    <span class="keyword">this</span>.commander = <span class="string">"Zhukov"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//定义类函数</span></span><br><span class="line">Tank.prototype.fire = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"biubiubiu"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//总感觉这种不把类函数写在类里的写法是异端</span></span><br></pre></td></tr></table></figure>
+
+<p> 生成实例时</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tank = <span class="keyword">new</span> Tank();</span><br><span class="line"><span class="built_in">console</span>.log(tank.name);   <span class="comment">//输出结果T-34</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Object.create()方法</p>
+<p> 说明：在这种定义类的方法中，“类”被看作是一个对象，而不是函数。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Tank = &#123;</span><br><span class="line">    name = <span class="string">"T-34"</span>;</span><br><span class="line">    commander = <span class="string">"Zhukov"</span>;</span><br><span class="line">    fire : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"biubiubiu"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//这个封装其实看的就舒服多了</span></span><br></pre></td></tr></table></figure>
+
+<p> 生成实例时，直接用Object.create()生成实例，不用new</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tank = <span class="built_in">Object</span>.create(Tank);</span><br><span class="line">alert(tank.name);</span><br><span class="line">tank.fire();</span><br></pre></td></tr></table></figure>
+
+<p> 注意，这种写法在老式浏览器中不一定能用，如欲使用，需调用一下代码</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Object</span>.create) &#123;</span><br><span class="line">    <span class="built_in">Object</span>.create = <span class="function"><span class="keyword">function</span> (<span class="params">o</span>) </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">        F.prototype = o;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> F();</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>极简主义法</p>
+<p> 这种函数的写法，定义一个构造函数createNew()，然后把所有的属性，类函数放进去，一个类声明只有一个函数，一个函数将所有属性与函数说清楚，故曰极简主义。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Tank = &#123;</span><br><span class="line">    createNew : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> tank = &#123;&#125;;</span><br><span class="line">        tank.name = <span class="string">"T-34"</span>;</span><br><span class="line">        tank.fire = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"biubiubiu"</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> tank;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 生成实例时，直接调用createNew()方法</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tank = Tank.createNew();</span><br><span class="line">tank.fire();</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#最基础"><span class="toc-number">1.</span> <span class="toc-text">最基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一般的变量定义"><span class="toc-number">1.1.</span> <span class="toc-text">一般的变量定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组的定义"><span class="toc-number">1.2.</span> <span class="toc-text">数组的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关联数组"><span class="toc-number">1.3.</span> <span class="toc-text">关联数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#面向对象"><span class="toc-number">1.4.</span> <span class="toc-text">面向对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#对象的声明"><span class="toc-number">1.4.1.</span> <span class="toc-text">对象的声明</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&text=前端知识-JS入门篇（1）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&is_video=false&description=前端知识-JS入门篇（1）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=前端知识-JS入门篇（1）&body=Check out this article: http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&title=前端知识-JS入门篇（1）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/05/19/前端知识-JS入门篇（1）/&name=前端知识-JS入门篇（1）&description=&lt;p&gt;这个系列将讲解一些基础js知识。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Zixuan Zheng
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
