@@ -71,5 +71,3 @@ const logout = () => {
     window.location.href = '/';
 };
 ```
-
-## 网络相关-服务器端的cookie设置
