@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>JS设计模式2 - 工厂模式 | 旋空间</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇文章开始，会开始陆陆续续介绍我对设计模式的一些理解，以及用JS实现。主要参考书为张容铭的《Javascript设计模式》以及在线的《Graphic Design Patterns》。这篇文章会从简单工厂模式，工厂方法模式一直到抽象工厂模式，聊一聊官方的定义以及我自己的一些理解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS设计模式2 - 工厂模式">
+<meta property="og:url" content="https://coding_zzx.gitee.io/my-blog/2019/03/02/JS设计模式2-工厂模式/index.html">
+<meta property="og:site_name" content="旋空间">
+<meta property="og:description" content="这篇文章开始，会开始陆陆续续介绍我对设计模式的一些理解，以及用JS实现。主要参考书为张容铭的《Javascript设计模式》以及在线的《Graphic Design Patterns》。这篇文章会从简单工厂模式，工厂方法模式一直到抽象工厂模式，聊一聊官方的定义以及我自己的一些理解。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-11T06:54:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS设计模式2 - 工厂模式">
+<meta name="twitter:description" content="这篇文章开始，会开始陆陆续续介绍我对设计模式的一些理解，以及用JS实现。主要参考书为张容铭的《Javascript设计模式》以及在线的《Graphic Design Patterns》。这篇文章会从简单工厂模式，工厂方法模式一直到抽象工厂模式，聊一聊官方的定义以及我自己的一些理解。">
+  
+    <link rel="alternate" href="/my-blog/atom.xml" title="旋空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/my-blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/my-blog/" id="logo">旋空间</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/my-blog/" id="subtitle">郑子旋的个人博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/my-blog/">Home</a>
+        
+          <a class="main-nav-link" href="/my-blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/my-blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://coding_zzx.gitee.io/my-blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS设计模式2-工厂模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/my-blog/2019/03/02/JS设计模式2-工厂模式/" class="article-date">
+  <time datetime="2019-03-02T08:50:16.000Z" itemprop="datePublished">2019-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS设计模式2 - 工厂模式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇文章开始，会开始陆陆续续介绍我对设计模式的一些理解，以及用JS实现。主要参考书为张容铭的《Javascript设计模式》以及在线的《Graphic Design Patterns》。这篇文章会从简单工厂模式，工厂方法模式一直到抽象工厂模式，聊一聊官方的定义以及我自己的一些理解。</p>
+<a id="more"></a>
+<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p>根据定义，简单工厂模式需要专门定义一个类来负责创建其他类的实例，可以根据参数的不同返回不同的实例。不考虑JS没有JAVA的接口以及抽象类的情况下，有如下角色，</p>
+<ul>
+<li><p>Factory: 负责创建所有实例的内部逻辑</p>
+</li>
+<li><p>Product: 负责描述所有实例所共有的公共接口</p>
+</li>
+<li><p>ConcretProduct: 所有创建的对象都充当这个角色的某个具体类的实例</p>
+</li>
+</ul>
+<p>个人认为在JS语言中实现Product父类，再实现子类的做法有些累赘，毕竟工厂类并不会通过父类创建子类，而是直接作用于子类，父类并不会被使用，也就没有所谓的消解耦合的作用。</p>
+<p>代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Factory</span>(<span class="params">arg1, arg2, arg3 ...</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (argsCondition1) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ConcretProduct1(arg1, arg2, arg3 ...);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (argsCondition2) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ConcretProduct2(arg1, arg2, arg3 ...);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (argsCondition3) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ConcretProduct3(arg1, arg2, arg3 ...);</span><br><span class="line">    &#125; ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ConcretProduct1</span>(<span class="params">arg1, arg2, arg3 ...</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> attribute1 = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">let</span> getSomething = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ConcretProduct2</span>(<span class="params">arg1, arg2, arg3 ...</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> attribute1 = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">let</span> getSomething = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ol>
+<li><p>客服端可以避免直接创建产品实例，从而实现代码分离，降低耦合。</p>
+</li>
+<li><p>客户端不必知道产品的具体类名，而是可以通过一个工厂实例进行参数传递，通过参数将创建工作交给工厂实例。</p>
+</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li><p>工厂类集中了所有产品创建逻辑，一旦不能正常工作，整个系统都要受到影响。</p>
+</li>
+<li><p>由于每个具体产品都需要定义类，所以系统的类个数势必增多，一定程度增加了系统的复杂度和理解难度。</p>
+<p> 系统扩展困难，增加新产品必须修改逻辑，可能使工厂类出现很多if else的组合，不利于扩展维护。</p>
+</li>
+</ol>
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>上面说了简单工厂系统扩展困难的问题，在我看来本质上是一种耦合度高的问题，所以在工厂方法模式中，不再使用工厂类去负责所有产品的创建，而是将其交给专门的工厂负责子类去完成。等于说，工厂模式仅仅相当于创建具体工厂的接口，在具体工厂中再真正创建产品。相当于在简单工厂的基础上又多了一层，达到了降低耦合的目的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Factory</span>(<span class="params">type, content</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> <span class="keyword">instanceof</span> Factory) &#123;</span><br><span class="line">        <span class="keyword">let</span> s = <span class="keyword">new</span> <span class="keyword">this</span>[type](content);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Factory(type, content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Factory.prototype = &#123;</span><br><span class="line">    ConcretFactory1: <span class="function"><span class="keyword">function</span>(<span class="params">content</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.content = content;</span><br><span class="line">        (<span class="function"><span class="keyword">function</span>(<span class="params">content</span>)</span>&#123;</span><br><span class="line">            <span class="comment">//operation</span></span><br><span class="line">        &#125;)();</span><br><span class="line">    &#125;,</span><br><span class="line">    ConcretFactory2: <span class="function"><span class="keyword">function</span>(<span class="params">content</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.content = content;</span><br><span class="line">        (<span class="function"><span class="keyword">function</span>(<span class="params">content</span>)</span>&#123;</span><br><span class="line">            <span class="comment">//operation</span></span><br><span class="line">        &#125;)();</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ol>
+<li><p>相比于简单工厂模式，用户只需要关心所需产品对应的工厂，不用关心创建细节，无需知道具体产品类的类名。</p>
+</li>
+<li><p>工厂与产品同时具有多态性，工厂可以自主确定创建何种产品对象，如何创建在具体工厂内部。</p>
+</li>
+<li><p>添加新产品时，无需修改工厂类，只需要添加具体工厂及相应具体产品。相比简单工厂而言，拓展性变得很好。</p>
+</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>添加新产品，需要编写新的具体工厂及具体产品 ，一定程度增加了系统的复杂度，系统开销可能增大。同时相应的实现难度也会增加。</li>
+</ol>
+<p>印象比较深刻的例子，是《JS设计模式》里讲的设计按钮的例子，这个我自己在实际开发中亲身写过相关的代码，所以比较能够理解。实践过程中，我们不用将按钮的创建过程直接写在业务端，大幅提升业务端代码的可读性，使得维护性得到提升。<br>抽象工厂模式</p>
+<p>无论是简单工厂还是工厂方法，两种设计模式都是针对某一具体产品进行操作，然而当产品体系复杂起来，比如考虑到增加多个产品层级与复杂结构，就算是工厂方法，扩展性和维护性也能想象到会变得异常庞杂。</p>
+<p>代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//抽象工厂簇，存储所有抽象工厂，可以自动建造</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">AbstractFactoryCluster</span>(<span class="params">subType, superType</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> AbstractFactory[superType] == <span class="string">'function'</span>) &#123;</span><br><span class="line">        <span class="comment">//创建缓存类</span></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">F</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">        <span class="comment">//继承父类属性方法</span></span><br><span class="line">        F.prototype = <span class="keyword">new</span> AbstractFactoryCluster[superType]();</span><br><span class="line">        <span class="comment">//</span></span><br><span class="line">        subType.constructor = subType;</span><br><span class="line">        <span class="comment">//子类原型继承父类</span></span><br><span class="line">        subType.prototype  = <span class="keyword">new</span> F();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'未创建该抽象类'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">AbstractFactoryCluster.AbstractFactory  = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.type = <span class="string">''</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">AbstractFactoryCluster.AbstractFactory.prototype = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    operation1 : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    operation2 : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ol>
+<li><p>增加新的具体工厂和产品族很方便，无需修改已有系统</p>
+</li>
+<li><p>实现了高内聚低耦合的设计目的。客户与具体类被隔离，更换具体工厂变得相对容易。</p>
+</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li><p>增加新的工厂和产品容易，直接添加即可。但增加新的产品簇，则操作复杂。</p>
+</li>
+<li><p>结构复杂，使得有时候添加新产品会变得难以扩展。</p>
+</li>
+</ol>
+<p>以上均是官方说法，我由于目前所经历的实习以及做过的项目并没有庞大到一定地步，所以对此没有什么深度的理解与感悟。还是得积累经验，慢慢地去体会这些设计模式的存在意义。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://coding_zzx.gitee.io/my-blog/2019/03/02/JS设计模式2-工厂模式/" data-id="ckebira9d000cinfuarvg2r7w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/my-blog/2019/03/18/CSS布局-初识flex/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CSS布局-初识flex
+        
+      </div>
+    </a>
+  
+  
+    <a href="/my-blog/2019/02/28/JS排序算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS排序算法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/my-blog/2020/08/16/shell学习笔记 1 - 基础语法/">shell学习笔记 1 - 编程基础语法</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/">一份数据挖掘报告 - 来自ANU的课程作业</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/06/22/工程实践-几个项目开发下来的一些经验/">学生时代几个项目开发下来的一些经验</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/04/17/数据挖掘小知识-关联规则学习-Associate-mining/">数据挖掘小知识 - 关联规则学习 Associate mining</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/04/15/JS语法糖总结/">JS语法糖总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Zixuan Zheng<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/my-blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/my-blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/my-blog/fancybox/jquery.fancybox.css">
+  <script src="/my-blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/my-blog/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>

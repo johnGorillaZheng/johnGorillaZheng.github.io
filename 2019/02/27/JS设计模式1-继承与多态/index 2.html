@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>JS设计模式1 - 继承与多态 | 旋空间</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在以前学习 java 的继承概念的时候，我了解到继承是设置子类使其继承父类，使得子类能够从父类继承方法和属性。而且在 java 以及 C++语言中，继承关系比较简单粗暴，一个 extend 或 inherit 关键字就把继承十分明显的表示出来。但在 JS 中，由于其特殊的机制，类之间的继承不是简单的复制，类的继承彼此间会存在关系，且不同的方法会表现出不同程度的相互影响。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS设计模式1 - 继承与多态">
+<meta property="og:url" content="https://coding_zzx.gitee.io/my-blog/2019/02/27/JS设计模式1-继承与多态/index.html">
+<meta property="og:site_name" content="旋空间">
+<meta property="og:description" content="在以前学习 java 的继承概念的时候，我了解到继承是设置子类使其继承父类，使得子类能够从父类继承方法和属性。而且在 java 以及 C++语言中，继承关系比较简单粗暴，一个 extend 或 inherit 关键字就把继承十分明显的表示出来。但在 JS 中，由于其特殊的机制，类之间的继承不是简单的复制，类的继承彼此间会存在关系，且不同的方法会表现出不同程度的相互影响。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-11T07:08:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS设计模式1 - 继承与多态">
+<meta name="twitter:description" content="在以前学习 java 的继承概念的时候，我了解到继承是设置子类使其继承父类，使得子类能够从父类继承方法和属性。而且在 java 以及 C++语言中，继承关系比较简单粗暴，一个 extend 或 inherit 关键字就把继承十分明显的表示出来。但在 JS 中，由于其特殊的机制，类之间的继承不是简单的复制，类的继承彼此间会存在关系，且不同的方法会表现出不同程度的相互影响。">
+  
+    <link rel="alternate" href="/my-blog/atom.xml" title="旋空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/my-blog/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/my-blog/" id="logo">旋空间</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/my-blog/" id="subtitle">郑子旋的个人博客</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/my-blog/">Home</a>
+        
+          <a class="main-nav-link" href="/my-blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/my-blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://coding_zzx.gitee.io/my-blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JS设计模式1-继承与多态" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/my-blog/2019/02/27/JS设计模式1-继承与多态/" class="article-date">
+  <time datetime="2019-02-27T09:03:53.000Z" itemprop="datePublished">2019-02-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS设计模式1 - 继承与多态
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在以前学习 java 的继承概念的时候，我了解到继承是设置子类使其继承父类，使得子类能够从父类继承方法和属性。而且在 java 以及 C++语言中，继承关系比较简单粗暴，一个 extend 或 inherit 关键字就把继承十分明显的表示出来。但在 JS 中，由于其特殊的机制，类之间的继承不是简单的复制，类的继承彼此间会存在关系，且不同的方法会表现出不同程度的相互影响。</p>
+<a id="more"></a>
+<h2 id="原型链继承"><a href="#原型链继承" class="headerlink" title="原型链继承"></a>原型链继承</h2><p>这里采用一下 MDN 相关教程的代码，定义 Person 这么一个类。其中类里面所有的方法都定义在构造器原型上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">first, last, age, gender, interests</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = &#123;</span><br><span class="line">        first,</span><br><span class="line">        last</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.gender = gender;</span><br><span class="line">    <span class="keyword">this</span>.interests = interests;</span><br><span class="line">    <span class="keyword">this</span>.greeting = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Hi, I'm"</span> + <span class="keyword">this</span>.first);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在定义了人这个类之后，我们就可以着手实现相关子类了，比如 MDN 里的 Teacher，对于老师这个类来说，会多一个 subject 属性，同时也会改写原来的 greeting 方法。直接上代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Teacher</span>(<span class="params">first, last, age, gender, interests, subject</span>) </span>&#123;</span><br><span class="line">    Person.call(<span class="keyword">this</span>, first, last, age, gender, interests);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.subject = subejct;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于 call(),以及相关的 apply()和 bind() （照搬《深入理解 JavaScript》）</p>
+<ul>
+<li><p>Function.prototype.call(thisValue, arg1, arg2, …)<br>  第一个参数指定当前 bind 函数指向谁，如果是 this，则为当前类，如果为 null 则是全局对象（window 或 global）也可以指其他函数或对象，指当前函数。然后指定后面的参数参与函数运算。</p>
+</li>
+<li><p>在这里的作用，借用《Javascript 设计模式》这本书来说，就是“将子类中的变量在父类中执行了一遍”，子类就继承了父类的属性。的确，它在生成实例的时候，会调用父类的构造函数，以此将父类元素定在了子类里。</p>
+<p>  从形式上看，和 java 中的 super()函数有些异曲同工之妙。</p>
+</li>
+<li><p>Function.prototype.apply(thisValue, argArray)<br>  第一个参数同上，第二个参数是一个数组。注意：他只对函数或方法又用，对构造函数无效。</p>
+</li>
+<li><p>Function.prototype.bind(thisValue, arg1, arg2, …)<br>  第一个参数同上，这个函数会生成并返回一个新函数，同时将从 arg1 开始的参数指定为原函数的固定参数，例如：</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> plus = add.bind(<span class="keyword">this</span>, <span class="number">1</span>); <span class="comment">// 相当于原函数变成add(1, y)， x被指定为1</span></span><br><span class="line">plus(<span class="number">6</span>); <span class="comment">// 结果是7</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>此时有一个问题，Teacher()的 prototype 尚未指定，由于我们把方法绑定到了 prototype，所以方法并没有继承下来。需要做以下操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Teacher.prototype = <span class="built_in">Object</span>.create(Person.prototype); <span class="comment">//创建一个和Person.prototype一样的新的属性值</span></span><br><span class="line">Teacher.prototype.constructor = Teacher;</span><br></pre></td></tr></table></figure>
+<p>至于方法重写，完全可以根据实际需要去定义</p>
+<h2 id="于在-java-中碰到的公有变量，私有变量，特权方法的实现"><a href="#于在-java-中碰到的公有变量，私有变量，特权方法的实现" class="headerlink" title="于在 java 中碰到的公有变量，私有变量，特权方法的实现"></a>于在 java 中碰到的公有变量，私有变量，特权方法的实现</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">constructr</span>(<span class="params">...</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">var</span> that = <span class="keyword">this</span>;            <span class="comment">//类内部的函数会需要调用指向类的指针</span></span><br><span class="line">   <span class="keyword">var</span> privateData = ...;      <span class="comment">//虽然没有java那么直白，但私有数据是无法从外部访问的，只能对象内部进行修改</span></span><br><span class="line">   <span class="keyword">this</span>.publicData1 = ...;     <span class="comment">//共有数据就可以直接obj.publicData1访问到</span></span><br><span class="line">   <span class="keyword">this</span>.privilegedFunction(...) &#123;</span><br><span class="line">       privateData = ...</span><br><span class="line">       that.publicData = ...</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="深入探讨：原型模式"><a href="#深入探讨：原型模式" class="headerlink" title="深入探讨：原型模式"></a>深入探讨：原型模式</h2><p>在上面的继承的说明时，注意到子类在生成实例的时候会完整调用父类的构造函数。那么，当父类的构造函数逻辑复杂或者性能消耗巨大的时候，我们就不得不限制子类实例的生成。所以，我们在父类的编写时，可以把简单的属性赋值放入构造函数，复杂的函数放入父类的原型 prototype 中，通过 prototype 的原型链自动使子类拥有父类的函数，具体针对上文提到的 Person 类，就可以做如下改写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">first, last, age, gender, interests</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = &#123;</span><br><span class="line">        first,</span><br><span class="line">        last</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">    <span class="keyword">this</span>.gender = gender;</span><br><span class="line">    <span class="keyword">this</span>.interests = interests;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype = &#123;</span><br><span class="line">    greeting : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Hi, I'm"</span> + <span class="keyword">this</span>.first);</span><br><span class="line">    &#125;,</span><br><span class="line">    anotherFunction : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而作为子类 Teacher,我们还需要前面提到的一步将 prototype 进行赋值的操作,就会自动共享 Person.prototype 的所有方法，然后根据实际需要再自行改写即可，</p>
+<p>原型赋值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//推荐这种写法，因为减少了不必要的赋值操作，我们只想把函数通过原型进行继承</span></span><br><span class="line">Teacher.prototype = <span class="built_in">Object</span>.create(Person.prototype);</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line">Teacher.prototype = <span class="keyword">new</span> Person();</span><br></pre></td></tr></table></figure>
+<p>改写方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Teacher.prototype.greeting = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Hi, I am a teacher"</span>);</span><br><span class="line">&#125;;</span><br><span class="line">Teacher.prototype.shake = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"shake hands"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>除此之外，当修改父类 prototype 的方法时，例如增加一个方法，子类会自动继承，但修改子类并不会影响父类，同时修改子类的函数并不会影响到父类的同名函数。这就设计到一个原型链的问题，对于 Teacher 的 prototype，它的具体成员可以这么看，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Teacher.prototype :&#123;</span><br><span class="line">    greeting : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"Hi, I am a teacher"</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    shake : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"shake hands"</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    __proto__ : &#123;</span><br><span class="line">        greeting : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"Hi, I'm"</span> + <span class="keyword">this</span>.first);</span><br><span class="line">        &#125;,</span><br><span class="line">        anotherFunction : <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">        ...</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以清晰地看到，proto这个对象存储着它父类所有的函数，其实它可以一直追溯到Object这个最原初的对象。而JS在调用一个对象的方法时，首先看它自己的prototype有无此方法，如果没有，就一级一级的父元素找，直到找到或走到Object宣布无方法。</p>
+<p>最后，还有一种更节省资源的方法，特别是想进行某种多重继承的时候，直接对所有父类的原型进行浅复制然后生成实例。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prototypeCopy</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">    <span class="keyword">var</span> args = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">var</span> len = args.length;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j <span class="keyword">in</span> ars[i]) &#123;</span><br><span class="line">            F.prototype[j] = args[i][j]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Object</span>.create(F);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://coding_zzx.gitee.io/my-blog/2019/02/27/JS设计模式1-继承与多态/" data-id="ckebira9c000binfu3jno7qrb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/my-blog/2019/02/28/JS排序算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JS排序算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/my-blog/2019/02/27/关于vue的数据监听的一些事情/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于vue的数据监听的一些事情</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/my-blog/2020/08/16/shell学习笔记 1 - 基础语法/">shell学习笔记 1 - 编程基础语法</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/">一份数据挖掘报告 - 来自ANU的课程作业</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/06/22/工程实践-几个项目开发下来的一些经验/">学生时代几个项目开发下来的一些经验</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/04/17/数据挖掘小知识-关联规则学习-Associate-mining/">数据挖掘小知识 - 关联规则学习 Associate mining</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/04/15/JS语法糖总结/">JS语法糖总结</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Zixuan Zheng<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/my-blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/my-blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/my-blog/fancybox/jquery.fancybox.css">
+  <script src="/my-blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/my-blog/js/script.js"></script>
+
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+</body>
+</html>
