@@ -1,659 +1,485 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="utf-8">
-  
-
-  
-  <title>旋空间</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="og:type" content="website">
 <meta property="og:title" content="旋空间">
 <meta property="og:url" content="https://coding_zzx.gitee.io/my-blog/index.html">
 <meta property="og:site_name" content="旋空间">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="旋空间">
-  
-    <link rel="alternate" href="/my-blog/atom.xml" title="旋空间" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/my-blog/css/style.css">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/my-blog/images/logo.png">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/my-blog/images/logo.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/my-blog/images/logo.png">
+          
+        
+    
+    <!-- title -->
+    <title>旋空间</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/my-blog/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/my-blog/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
 </head>
-</html>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/my-blog/" id="logo">旋空间</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/my-blog/" id="subtitle">郑子旋的个人博客</a>
-        </h2>
-      
+
+<body class="max-width mx-auto px3 ltr">    
+    <div class="content index py4">
+        
+          <header id="header">
+  <a href="/my-blog/">
+  
+    
+      <div id="logo" style="background-image: url(/my-blog/images/logo.png);"></div>
+    
+  
+    <div id="title">
+      <h1>旋空间</h1>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/my-blog/">Home</a>
-        
-          <a class="main-nav-link" href="/my-blog/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/my-blog/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://coding_zzx.gitee.io/my-blog"></form>
-      </div>
-    </div>
+  </a>
+  <div id="nav">
+    <ul>
+      <li class="icon">
+        <a href="#"><i class="fas fa-bars fa-2x"></i></a>
+      </li>
+       
+        <li><a href="/my-blog/">Home</a></li>
+       
+        <li><a href="/my-blog/about/">About</a></li>
+       
+        <li><a href="/my-blog/archives/">Writing</a></li>
+      
+    </ul>
   </div>
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-shell学习笔记 1 - 基础语法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/my-blog/2020/08/16/shell学习笔记 1 - 基础语法/" class="article-date">
-  <time datetime="2020-08-16T04:35:11.000Z" itemprop="datePublished">2020-08-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+
         
+        <section id="about">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/my-blog/2020/08/16/shell学习笔记 1 - 基础语法/">shell学习笔记 1 - 编程基础语法</a>
-    </h1>
   
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="变量与函数"><a href="#变量与函数" class="headerlink" title="变量与函数"></a>变量与函数</h2><p>shell语言的赋值就和python语言是弱类型语言，对于简单数据类型，即数值与字符串，直接采用下列方法即可。而且，在赋值时不要在=两边加空格，否则会编译错误</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a=1</span><br><span class="line">b='hello world'</span><br></pre></td></tr></table></figure>
-<h3 id="变量引用"><a href="#变量引用" class="headerlink" title="变量引用"></a>变量引用</h3><ol>
-<li><code>&quot;var&quot;</code>双引号：弱引用，<code>echo &quot;${var}&quot;</code>输出这个变量具体值</li>
-<li><code>&#39;var&#39;</code>单引号：强引用，<code>echo &#39;${var}&#39;</code>输出”${var}”字符串</li>
-<li>`` 反引号等同于<code>$()</code></li>
-</ol>
-<h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><p>shell中的变量定义默认的作用域是全局，如果想实现其他语言的闭包，则需要加装<code>local</code>字段。</p>
-<p>P.S. 此处的全局变量范围是当前进程</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a=1</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">fun1</span></span>() &#123;</span><br><span class="line">  <span class="built_in">local</span> a=2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样，在调用<code>func1()</code>时，其内部<code>a</code>的值就可以变成2。</p>
-<h3 id="变量运算"><a href="#变量运算" class="headerlink" title="变量运算"></a>变量运算</h3><h4 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h4><p>假定先定义好<code>a=1;b=2</code></p>
-<ol>
-<li>expr：<code>c=&quot;expr $a+$b&quot;</code></li>
-<li>$(())：<code>c=$((a+b))</code></li>
-<li>$[]：<code>c=$[a+b]</code></li>
-<li>let：<code>let c=a+b</code></li>
-</ol>
-<h4 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h4><ol>
-<li><code>echo &quot;scale=2;6/4&quot;</code>|bc</li>
-<li><code>echo &quot;print 6/4&quot;|python</code></li>
-</ol>
-<p>这给人感觉貌似shell并不怎么支持浮点数运算，得交给其他程序去实现，可能跟他的业务不怎么偏计算有关吧。。</p>
-<h2 id="条件控制"><a href="#条件控制" class="headerlink" title="条件控制"></a>条件控制</h2><h3 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> <span class="string">"2&gt;3"</span> </span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">elif</span> [<span class="string">"3&gt;4"</span>]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>其中<code>test &quot;2&gt;3&quot;</code>也可以写作<code>[&quot;2&gt;3&quot;]</code>，其他常见的布尔运算符和其他语言一致：与<code>&amp;&amp;</code>，或<code>||</code>，非<code>!</code>。</p>
-<h3 id="switch语句"><a href="#switch语句" class="headerlink" title="switch语句"></a>switch语句</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> expression <span class="keyword">in</span></span><br><span class="line">  pattern1 )</span><br><span class="line">    statement;;</span><br><span class="line">  pattern2 )</span><br><span class="line">    statement;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
-<p>这里<code>pattern</code>指的是类似于<code>-d -f</code>这种匹配模式</p>
-<p>对于字符串的判断，有很多和正则表达式相似的表达式，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-n str1   <span class="comment">#str1为非 null</span></span><br><span class="line">-z str1   <span class="comment">#str1为 null</span></span><br></pre></td></tr></table></figure>
-<p>之后，也会单独讲一讲这种判断规则</p>
-<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [list like]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<h3 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> [<span class="string">"3&gt;4"</span>]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<h3 id="until循环"><a href="#until循环" class="headerlink" title="until循环"></a>until循环</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">until [<span class="string">"3&gt;4"</span>]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">func1</span></span> () &#123;</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"Hello World"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">func2</span></span> () &#123;</span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">if</span> [ <span class="variable">$1</span> == 1]</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">return</span> 1</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"not 1"</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>作用域：在函数内部定义local变量名如果和外部一样的话，return的时候不会影响外部，即返回值使用函数内的值，但函数使用完就进行销毁，不影响外面同名值。</p>
-<h2 id="函数参数"><a href="#函数参数" class="headerlink" title="函数参数"></a>函数参数</h2><p>shell不用特意在函数定义时写形参，在函数体内部可以直接通过<code>$1, $2</code>这种形式来指定参数</p>
-<h3 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3><p>在命令行中调用写好的函数时，直接把函数名打上，如果函数需要参数，则将参数以空格形式隔开</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 调用无参数函数</span></span><br><span class="line">func1</span><br><span class="line"><span class="comment"># 调用有参数函数</span></span><br><span class="line">func2 1 2</span><br></pre></td></tr></table></figure>
-<p>关于return结果的调用，</p>
-<ol>
-<li><p>使用<code>$?</code>；此方法只能返回0-255的整数，且需要先采取上面方式调用，然后去取值。（感觉好不智能，有点汇编的感觉）</p>
-</li>
-<li><p>直接写成<code>result=$(func2 1)</code>，这个方法对于返回值没有过多的限定，以后用这个比较好。</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://coding_zzx.gitee.io/my-blog/2020/08/16/shell学习笔记 1 - 基础语法/" data-id="ckebira9k000kinfu186e0yix" class="article-share-link">Share</a>
+    <p>
+      Find me on
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-一份数据挖掘报告-来自ANU的课程作业" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/" class="article-date">
-  <time datetime="2020-08-14T07:57:25.000Z" itemprop="datePublished">2020-08-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+      
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/">一份数据挖掘报告 - 来自ANU的课程作业</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这是我在ANU最后一学期的数据分析课（COMP8410/3425）的最终报告，分析一份调查问卷，有一些很有意思的东西，成绩也还不错，如果不算语法错误的扣分就优秀了。</p>
-        
-          <p class="article-more-link">
-            <a href="/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/#more">Read More</a>
-          </p>
+          <a class="icon" target="_blank" href="https://github.com/johnGorillaZheng">
+            <i class="fab fa-github"></i><!--
+      ---></a><!--
+    ---><!--
+    --->, 
         
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/" data-id="ckebira9k000linfuwwyrv0gq" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-工程实践-几个项目开发下来的一些经验" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/my-blog/2020/06/22/工程实践-几个项目开发下来的一些经验/" class="article-date">
-  <time datetime="2020-06-22T14:49:14.000Z" itemprop="datePublished">2020-06-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/my-blog/2020/06/22/工程实践-几个项目开发下来的一些经验/">学生时代几个项目开发下来的一些经验</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最后一个学期结束了，在CSIRO的实习也结束了，我想从工程开发的角度回顾下我学生生涯的三段实践经历，也算是一个总结，以及后续哪里可以进一步深挖。往后也会定期的对工程项目进行一定的总结，这个章节并不会涉及到具体的技术细节，而是工作大的方法论。</p>
-        
-          <p class="article-more-link">
-            <a href="/my-blog/2020/06/22/工程实践-几个项目开发下来的一些经验/#more">Read More</a>
-          </p>
+          <a class="icon" target="_blank" href="/my-blog/">
+            <i class="fab fa-twitter"></i><!--
+      ---></a><!--
+    ---><!--
+    --->, 
         
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://coding_zzx.gitee.io/my-blog/2020/06/22/工程实践-几个项目开发下来的一些经验/" data-id="ckebira9w000zinfuiec4ova8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-数据挖掘小知识-关联规则学习-Associate-mining" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/my-blog/2020/04/17/数据挖掘小知识-关联规则学习-Associate-mining/" class="article-date">
-  <time datetime="2020-04-17T14:56:05.000Z" itemprop="datePublished">2020-04-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/my-blog/2020/04/17/数据挖掘小知识-关联规则学习-Associate-mining/">数据挖掘小知识 - 关联规则学习 Associate mining</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h2><p>频繁模式挖掘（Frequent pattern mining）在交易或关系型数据中进行数据挖掘。试图在数据集中挖掘频繁出现的模式，例如购物中顾客更有可能买的物品集合。实际中的例子：沃尔玛发现买尿不湿的客人更有可能买啤酒。虽然不理解为什么，但客观存在。^_^</p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ul>
-<li><p>初步定义</p>
-<ul>
-<li>itemset: 物品集合， $I=\{I_1, I_2, …, Im\}$</li>
-<li>k-itemset: $k=|I|$, 势为k的itemset</li>
-<li>T -&gt; <strong>transaction</strong>，为非空itemset, $T\in D$, D是一个任务相关的transaction（task-relevant）</li>
-<li>每一个transaction有一个TID</li>
-</ul>
-</li>
-<li><p>滋瓷（Support）</p>
-<ul>
-<li><strong>support count</strong> of itemset A in dataset $D = |\{T | A \subseteq T \land T \subseteq D \}|$。D中包含A的transacion的数量</li>
-<li>support = $\frac{|support\ count|}{|D|}$</li>
-<li>当$support(A) \geq min\_sup$，称A是频繁的，其中$min\_sup$是人为定义的最小支持度(minimum support threshold)</li>
-</ul>
-</li>
-<li><p>关联规则 (Associate rule)</p>
-<ul>
-<li>定义关联规则形如$A \implies B$，其中$A \subset I, B \subset I, A \neq \emptyset, A \neq \emptyset$ and $A \cap B = \emptyset$</li>
-<li>support: 在D中成立的规则$A \implies B$的$support=support(A \cup B)$</li>
-<li>可信度：在D中成立的规则$A \implies B$的$confidence = \frac{support(A \cup B)}{support(A)}$</li>
-<li>当$A\cup B$是频繁的，我们称$A \implies B$为强关联</li>
-<li>lift of $A \implies B = \frac{support(A \cup B)}{support(A) * support(B)}$<ul>
-<li>$lift = 1$， A， B相互独立</li>
-<li>$lift \geq 1$，A，B正相关 (positively correlated)</li>
-<li>$lift \leq 1$，A，B负相关（negatively correlataed）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Apriori算法"><a href="#Apriori算法" class="headerlink" title="Apriori算法"></a>Apriori算法</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://coding_zzx.gitee.io/my-blog/2020/04/17/数据挖掘小知识-关联规则学习-Associate-mining/" data-id="ckebira9v000yinfu22hwt4ip" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-JS语法糖总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/my-blog/2020/04/15/JS语法糖总结/" class="article-date">
-  <time datetime="2020-04-15T14:41:40.000Z" itemprop="datePublished">2020-04-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/my-blog/2020/04/15/JS语法糖总结/">JS语法糖总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近的实习中大量运用到一些JS的骚操作，现在把碰到的一些用法进行一下总结。</p>
-        
-          <p class="article-more-link">
-            <a href="/my-blog/2020/04/15/JS语法糖总结/#more">Read More</a>
-          </p>
+          <a class="icon" target="_blank" href="/my-blog/">
+            <i class="fab fa-facebook"></i><!--
+      ---></a><!--
+    ---><!--
+    --->, 
         
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://coding_zzx.gitee.io/my-blog/2020/04/15/JS语法糖总结/" data-id="ckebira9e000dinfug9evy0nx" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-一轮迟来的总结，一份崭新的希冀" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/my-blog/2020/02/27/一轮迟来的总结，一份崭新的希冀/" class="article-date">
-  <time datetime="2020-02-27T03:27:46.000Z" itemprop="datePublished">2020-02-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/my-blog/2020/02/27/一轮迟来的总结，一份崭新的希冀/">一轮迟来的总结，一份崭新的希冀</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>距离上次写作又过去了几个月，果然坚持写东西是件不容易的事情。然而人生的一些关键节点还是应该回顾的。看看曾经定下的目标有没有完成，看看接下来的人生应当调整。果然我是一个战役计划学说的拥趸（P社玩家逃～）</p>
-        
-          <p class="article-more-link">
-            <a href="/my-blog/2020/02/27/一轮迟来的总结，一份崭新的希冀/#more">Read More</a>
-          </p>
+          <a class="icon" target="_blank" href="https://www.linkedin.com/in/%E5%AD%90%E6%97%8B-%E9%83%91-5a8862ba/">
+            <i class="fab fa-linkedin"></i><!--
+      ---></a><!--
+    ---><!--
+    ---> and 
         
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://coding_zzx.gitee.io/my-blog/2020/02/27/一轮迟来的总结，一份崭新的希冀/" data-id="ckebira9u000winfu55ul6ryo" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-前端实践-目前踩过的cookie的坑" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/my-blog/2019/08/06/前端实践-目前踩过的cookie的坑/" class="article-date">
-  <time datetime="2019-08-06T15:33:23.000Z" itemprop="datePublished">2019-08-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/my-blog/2019/08/06/前端实践-目前踩过的cookie的坑/">前端实践-目前踩过的cookie的坑</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Cookie是怎么工作的"><a href="#Cookie是怎么工作的" class="headerlink" title="Cookie是怎么工作的"></a>Cookie是怎么工作的</h2><p>按照我目前做过的工作来说，cookie的工作流程大体上包括创建，保存与销毁。</p>
-<p>实际工作中，cookie往往是会在HTTP Response的Header中对浏览器进行设置，在Header中，会加上一个 Set-cookie的字段，例如下面这个例子，</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.0 OK</span><br><span class="line">Set-cookie: id=<span class="string">'1234'</span>; domain=<span class="string">'example.com'</span>; ...</span><br><span class="line">Content-type: text/html</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>这样就给目标用户贴上了一条cookie信息。cookie具体包括以下的属性，</p>
-<ul>
-<li><p>NAME=VALUE</p>
-</li>
-<li><p>Domain<br>  可以访问此cookie的域名</p>
-</li>
-<li><p>Max-age<br>  设置以秒计算的cookie存在时长，当max-age为正数时，</p>
-</li>
-<li><p>Path<br>  可以访问此cookie的页面路径</p>
-</li>
-<li><p>secure<br>  如果设置，那么该cookie只能在HttpS的情况下发出。</p>
-</li>
-<li><p>HttpOnly<br>  意思是cookie只能被http方法所操作。如果设置，则浏览器端的JS将无法访问该Cookie。但当向服务器发送请求时，可以将cookie带上。</p>
-</li>
-</ul>
-<h2 id="Cookie的浏览器端JS基本操作-增删改查"><a href="#Cookie的浏览器端JS基本操作-增删改查" class="headerlink" title="Cookie的浏览器端JS基本操作 - 增删改查"></a>Cookie的浏览器端JS基本操作 - 增删改查</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> hasCookie = <span class="function"><span class="params">str</span> =&gt;</span></span><br><span class="line"><span class="built_in">document</span>.cookie.split(<span class="string">';'</span>).some(<span class="function"><span class="params">token</span> =&gt;</span> token.indexOf(str) !== <span class="number">-1</span>);</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getCookie = <span class="function"><span class="params">str</span> =&gt;</span> &#123;</span><br><span class="line"><span class="keyword">const</span> cookies = <span class="built_in">document</span>.cookie.split(<span class="string">';'</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> token <span class="keyword">of</span> cookies) &#123;</span><br><span class="line">    <span class="keyword">if</span> (token.indexOf(str) !== <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> token.split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>cookie的清除主要思路是重新设置其过期时间，使之早于当前时间，让浏览器自己删掉cookie。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> logout = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> current = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    current.setTime(current.getTime() - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> cookies = <span class="built_in">document</span>.cookie.split(<span class="string">';'</span>);</span><br><span class="line"></span><br><span class="line">    cookies.forEach(<span class="function"><span class="params">cookie</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> name = cookie.trim().split(<span class="string">'='</span>)[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">const</span> value = cookie.trim().split(<span class="string">'='</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">const</span> time = current.toGMTString();</span><br><span class="line">    <span class="built_in">document</span>.cookie = <span class="string">`<span class="subst">$&#123;name&#125;</span>=<span class="subst">$&#123;value&#125;</span>;expires=<span class="subst">$&#123;time&#125;</span>;path=/`</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">window</span>.location.href = <span class="string">'/'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://coding_zzx.gitee.io/my-blog/2019/08/06/前端实践-目前踩过的cookie的坑/" data-id="ckebira9q000qinfu6anzooe3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-前端实践-react手写登陆注册" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/my-blog/2019/07/20/前端实践-react手写登陆注册/" class="article-date">
-  <time datetime="2019-07-20T13:40:56.000Z" itemprop="datePublished">2019-07-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/my-blog/2019/07/20/前端实践-react手写登陆注册/">前端实践-react手写登陆注册</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在澳大利亚一个初创团队做前端，正在参与并见证一个网站从0到1的全过程。其中不少功能都是自己设计并编写，其中登陆注册的操作便是由我搞定的，特此进行一些总结，希望对未来开发有所帮助。*这里没有涉及到后端的知识，以后查阅此文后，务必与对接的后端工程师进行详细的接口讨论。本篇文章只提供大致的思路。</p>
-        
-          <p class="article-more-link">
-            <a href="/my-blog/2019/07/20/前端实践-react手写登陆注册/#more">Read More</a>
-          </p>
+          <a class="icon" target="_blank" href="mailto:zhengzixuangood@gmail.com">
+            <i class="fas fa-envelope"></i><!--
+      ---></a><!--
+      ---><!--
+    --->.
         
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://coding_zzx.gitee.io/my-blog/2019/07/20/前端实践-react手写登陆注册/" data-id="ckebira9o000oinfudv4t7ezx" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
+    </p>
   
-</article>
-
-
-  
-    <article id="post-读史感悟-从魏晋嬗变中看家族力量" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/my-blog/2019/07/13/读史感悟-从魏晋嬗变中看家族力量/" class="article-date">
-  <time datetime="2019-07-13T03:21:56.000Z" itemprop="datePublished">2019-07-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/my-blog/2019/07/13/读史感悟-从魏晋嬗变中看家族力量/">读史感悟-从魏晋嬗变中看家族力量</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在读仇鹿鸣博士的《魏晋之际的政治权利与家族网络》，魏晋之际氏族家族力量的强大，足可左右天下大势。曾经秦汉时期布武威于天下，统万民于四海的天子，到了此时不过只能与门阀大族达成脆弱的同盟，甚至随时都能被掀翻在地。而且，无论是凭借赫赫武功立国的曹氏，还是奋三世余烈而篡夺江山的司马氏，都无法改变这种局面。西晋，乃至后面东晋的灭亡与世家大族不断独大不无关系。</p>
-<p>首先需要注意到，世家大族是从东汉一直到魏晋不断形成的，我们所熟悉的四世三公的汝南袁氏家族，弘农杨氏家族正是这一背景下形成的。这跟张良家五世相韩颇有类似，只不过用门阀政治力量代替了爵位的世袭罔替。强大如河内司马家族，也经过了四五代人才从地方家族到中央家族，并又经过两代人的经营才夺得大位。这也是袁绍袁术能率先成为最强大的诸侯的最主要原因，这种大门阀能轻易得到地方大族的支持，从而轻易控制地方，成为一方诸侯。相比之下，曹操的起家过程简直可用困难形容，刚开始的兖州士族还背叛过他，必须携天子以令不臣，就算官渡之战取得大捷，也花了七八年时间才平定河北。而刘备这个白身就更不用说了，黄巾之乱靠从死人堆里爬出来的战功只能被封一个县尉，和武松一个官位，还能被随意剥夺。刘备也只能打出一个汉皇后裔的幌子来收买大族的人心。另一个很好的例子，马超兵败带着马岱只身投奔刘备。照理说，败军降将地位不会很高，但在劝刘备称汉中王的群臣奏表中，马超位列群臣之首，超过诸葛亮，其西凉马家，东汉伏波将军马援之后带来的光环帮助他在其最后的生涯博得了一个相当高的地位。</p>
-<p>家族之间的利益关系超过了以往忠于国家，忠于君主的理念，甚至很多曹魏时期的忠臣后代，竟然都是晋朝开国的功臣，完全没有所谓食君禄，分君忧的思想顾虑。那些在曹操时代跟随魏武南征北讨的名将后裔，在曹氏子孙落难时，竟也没有一个人愿意站出来。不单门阀的忠诚与利益不再与国家利益相一致，就连统治阶层为了拉拢这些大族，也开始对其放松压制。钟会伐蜀功成而起兵谋反，历朝历代株连九族的大罪不过只翦除了钟会的子嗣，颍川钟氏依旧是豪门望族；高平陵之变为曹爽心腹的何晏，对于司马家族可谓是核心政敌，考虑到其曹操养子，以及驸马的身份，其家人居然也能网开一面。历朝历代都不见这种对敌人的怀柔仁慈。说到底，魏武晋宣缺乏汉高祖，明太祖的那种将手下牢固掌握的能力，与其说是领导与君臣，不如说是合伙人。一旦政权的最高领导人在臣民中变得不再神圣，不再权威，那么地位将不可长久延续。尽管父辈尚可囿于草创基业带来的地位以及价值认同，但是子辈孙辈缺乏这种认同，则只能以重大的利益将其收买。天下资源是有限的，更何况处于三国乱世。另外，当各个家族之间因为相互通婚，盟誓或一致的利益而结为一体，相互盘根错节，特别地，这些家族几乎能出任一个国家从政治，经济（屯田）到军事的各个关键部位的高层，并通过自行征辟各个中下层官员，牢牢地将这些部门控制在自己的手中。那么此时，最高领导人已经被实际架空，虽然贵为天子，其命运生死，已经被大族控制住，不服管教，则下场有如高贵乡公曹髦，暴死街头。</p>
-<p>大家族既然垄断了国家的权力部门，成为既得利益者，自然会想尽办法将其一直维续下去，那么很快就会“上品无寒门，下品无士族”。同时，由于长久盘踞国家高层，实际上就造成了国家的上下阶级割裂。魏晋之际之所以清谈，玄学成风，鄙视做实事的人，甚至五石散这种毒品盛行，不正是因为这些久居富贵的大族子弟并不需要所谓的政绩，功绩即可出任高位吗。邓艾一代名将，出身布衣，因被司马懿意外赏识而被征辟，一点一点进身高位。但始终被这些曹魏二代们视为异类，并被孤立。尽管他灭蜀立下不世之功，但意外卷入钟会谋反，含冤而死。后来钟会都能平反，邓艾一直到东晋都未能平反。人会本能地选择相信那些与自己亲近的人，包括亲人，师生，下属等。我们不能以圣人的标准要求所有人，这样的选择符合我们这个种族的本能以及大多数的利益。的确，当若干家族与其门生故吏相互结成一派，在凶险的政治环境下共同进退，确实会有更大的赢面，博得更大的利益。但当这个国家被这些大族同盟所胁持，事实上就形成了新的“世袭罔替”的贵族阶层，从而一个国家就陷入了一副死气沉沉的暮年之态。一旦天灾人祸发生，这些尸位素餐的管理者大概率无法有效治理，那么整个国家连同这个阶层将一同被葬送掉。曹魏开国尚可凭一时新晋的军功亲族延续四世，而西晋开国就陷入了这种王朝暮年之姿，也无外乎短短二十年就再度天下大乱。</p>
-<p>家族是人来到这个世界上最先接触也是最亲密的群体，父母会为了子女的前途无条件的付出所有，亲属之间的相互提携是最正常不过的人之常情。每个家族都可能出一个优秀的人，所谓一人得道，鸡犬升天。但一个家族想逐渐成为大族，很大概率是要靠几代人的拼搏才能得来。一人的成功可以凭借某些运气，但一个群体的成功却需要步步经营。而且一个纨绔子弟可能就会葬送掉前人所有的积累。任何一个时代，阶级的跨越都是不容易的，跌落都是相当容易的，要保证自己的子嗣不致家道中落，晚年悲凄，就需要从小对其进行约束，提供最好的教育，让其知道什么可为，什么不可为。所庆幸的是，当下这个时代，人们尚可通过相对公平的途径来与他人竞争，若是回到那个相对黑暗的时代，大多数人怕是会被钉死在面朝黄土背朝天的生命中，一代又一代被倾轧而又无法改变，这种绝望希望不会有人再经历。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://coding_zzx.gitee.io/my-blog/2019/07/13/读史感悟-从魏晋嬗变中看家族力量/" data-id="ckebira9t000vinfu6z5okqpn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Js数组方法总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/my-blog/2019/04/14/Js数组方法总结/" class="article-date">
-  <time datetime="2019-04-14T08:00:06.000Z" itemprop="datePublished">2019-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/my-blog/2019/04/14/Js数组方法总结/">Js数组方法总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本篇博客将总结js中常见的数组方法<br>
-        
-          <p class="article-more-link">
-            <a href="/my-blog/2019/04/14/Js数组方法总结/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://coding_zzx.gitee.io/my-blog/2019/04/14/Js数组方法总结/" data-id="ckebira9i000iinfu6m0atjki" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/my-blog/page/2/">2</a><a class="page-number" href="/my-blog/page/3/">3</a><a class="page-number" href="/my-blog/page/4/">4</a><a class="extend next" rel="next" href="/my-blog/page/2/">Next &raquo;</a>
-  </nav>
-
 </section>
+
+<section id="writing">
+  <span class="h1"><a href="/my-blog/archives">Writing</a></span>
+  
+  <ul class="post-list">
+    
+    
+      
+    
+    
+      <li class="post-item">
         
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/02/">February 2018</a></li></ul>
+    <div class="meta">
+      
+        
+          <time datetime="2020-08-16T04:35:11.000Z" itemprop="datePublished">2020-08-16</time>
+        
+      
     </div>
-  </div>
 
 
-  
+        <span>
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
+        <a class="" href="/my-blog/2020/08/16/shell学习笔记 1 - 基础语法/">shell学习笔记 1 - 编程基础语法</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2020-08-14T07:57:25.000Z" itemprop="datePublished">2020-08-14</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/">一份数据挖掘报告 - 来自ANU的课程作业</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2020-06-22T14:49:14.000Z" itemprop="datePublished">2020-06-22</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2020/06/22/工程实践-几个项目开发下来的一些经验/">学生时代几个项目开发下来的一些经验</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2020-04-17T14:56:05.000Z" itemprop="datePublished">2020-04-17</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2020/04/17/数据挖掘小知识-关联规则学习-Associate-mining/">数据挖掘小知识 - 关联规则学习 Associate mining</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2020-04-15T14:41:40.000Z" itemprop="datePublished">2020-04-15</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2020/04/15/JS语法糖总结/">JS语法糖总结</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2020-02-27T03:27:46.000Z" itemprop="datePublished">2020-02-27</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2020/02/27/一轮迟来的总结，一份崭新的希冀/">一轮迟来的总结，一份崭新的希冀</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-08-06T15:33:23.000Z" itemprop="datePublished">2019-08-06</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2019/08/06/前端实践-目前踩过的cookie的坑/">前端实践-目前踩过的cookie的坑</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-07-20T13:40:56.000Z" itemprop="datePublished">2019-07-20</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2019/07/20/前端实践-react手写登陆注册/">前端实践-react手写登陆注册</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-07-13T03:21:56.000Z" itemprop="datePublished">2019-07-13</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2019/07/13/读史感悟-从魏晋嬗变中看家族力量/">读史感悟-从魏晋嬗变中看家族力量</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-04-14T08:00:06.000Z" itemprop="datePublished">2019-04-14</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2019/04/14/Js数组方法总结/">Js数组方法总结</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-04-11T08:31:38.000Z" itemprop="datePublished">2019-04-11</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2019/04/11/JS-this与代码上下文/">JS-this与代码上下文 </a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-03-25T08:35:43.000Z" itemprop="datePublished">2019-03-25</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2019/03/25/JS事件处理/">JS事件处理</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-03-24T08:39:15.000Z" itemprop="datePublished">2019-03-24</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2019/03/24/CSS-position详解/">CSS - position详解</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-03-18T08:43:55.000Z" itemprop="datePublished">2019-03-18</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2019/03/18/CSS布局-初识flex/">CSS布局-初识flex</a>
+    
+
+
+</span>
+      </li>
+    
+      <li class="post-item">
+        
+    <div class="meta">
+      
+        
+          <time datetime="2019-03-02T08:50:16.000Z" itemprop="datePublished">2019-03-02</time>
+        
+      
+    </div>
+
+
+        <span>
+    
+        <a class="" href="/my-blog/2019/03/02/JS设计模式2-工厂模式/">JS设计模式2 - 工厂模式</a>
+    
+
+
+</span>
+      </li>
+    
+  </ul>
+  
+</section>
+
+
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Zixuan Zheng
+  </div>
+  <div class="footer-right">
+    <nav>
       <ul>
-        
-          <li>
-            <a href="/my-blog/2020/08/16/shell学习笔记 1 - 基础语法/">shell学习笔记 1 - 编程基础语法</a>
-          </li>
-        
-          <li>
-            <a href="/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/">一份数据挖掘报告 - 来自ANU的课程作业</a>
-          </li>
-        
-          <li>
-            <a href="/my-blog/2020/06/22/工程实践-几个项目开发下来的一些经验/">学生时代几个项目开发下来的一些经验</a>
-          </li>
-        
-          <li>
-            <a href="/my-blog/2020/04/17/数据挖掘小知识-关联规则学习-Associate-mining/">数据挖掘小知识 - 关联规则学习 Associate mining</a>
-          </li>
-        
-          <li>
-            <a href="/my-blog/2020/04/15/JS语法糖总结/">JS语法糖总结</a>
-          </li>
+         
+          <li><a href="/my-blog/">Home</a></li>
+         
+          <li><a href="/my-blog/about/">About</a></li>
+         
+          <li><a href="/my-blog/archives/">Writing</a></li>
         
       </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Zixuan Zheng<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    </nav>
   </div>
 </footer>
+
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/my-blog/" class="mobile-nav-link">Home</a>
-  
-    <a href="/my-blog/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+    <!-- styles -->
+<link rel="stylesheet" href="/my-blog/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/my-blog/lib/justified-gallery/css/justifiedGallery.min.css">
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- jquery -->
+<script src="/my-blog/lib/jquery/jquery.min.js"></script>
+<script src="/my-blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/my-blog/js/main.js"></script>
+<!-- search -->
 
+<!-- Google Analytics -->
 
-  <link rel="stylesheet" href="/my-blog/fancybox/jquery.fancybox.css">
-  <script src="/my-blog/fancybox/jquery.fancybox.pack.js"></script>
+<!-- Baidu Analytics -->
 
-
-<script src="/my-blog/js/script.js"></script>
+<!-- Disqus Comments -->
 
 
-
-  </div>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
