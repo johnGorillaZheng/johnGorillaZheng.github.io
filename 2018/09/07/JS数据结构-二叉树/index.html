@@ -9,7 +9,7 @@
     <meta name="description" content="从本篇起，我会尽我所能阐释那些复杂的数据结构，包括树与图，同时，从本篇起，会穿插地说一说其他的算法，例如排序，搜索，贪心等等，取决于我的思考程度以及leetcode做题程度（做的比较慢，总是想不出或总是debug失败。。。）。这一篇将会介绍树这一数据结构，本篇是基础篇，随后会有一篇树相关的算法。由于树中大量的运用到递归，总想不明白，目前leetcode只写出了很少的相关题。那么闲话少叙，现在开始。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS数据结构-二叉树">
-<meta property="og:url" content="http://yoursite.com/2018/09/07/JS数据结构-二叉树/index.html">
+<meta property="og:url" content="https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/index.html">
 <meta property="og:site_name" content="旋空间">
 <meta property="og:description" content="从本篇起，我会尽我所能阐释那些复杂的数据结构，包括树与图，同时，从本篇起，会穿插地说一说其他的算法，例如排序，搜索，贪心等等，取决于我的思考程度以及leetcode做题程度（做的比较慢，总是想不出或总是debug失败。。。）。这一篇将会介绍树这一数据结构，本篇是基础篇，随后会有一篇树相关的算法。由于树中大量的运用到递归，总想不明白，目前leetcode只写出了很少的相关题。那么闲话少叙，现在开始。">
 <meta property="og:locale" content="default">
@@ -21,27 +21,27 @@
     
         
           
-              <link rel="shortcut icon" href="/images/logo.png">
+              <link rel="shortcut icon" href="/my-blog/images/logo.png">
           
         
         
           
-            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
+            <link rel="icon" type="image/png" href="/my-blog/images/logo.png" sizes="192x192">
           
         
         
           
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
+            <link rel="apple-touch-icon" sizes="180x180" href="/my-blog/images/logo.png">
           
         
     
     <!-- title -->
     <title>JS数据结构-二叉树</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/my-blog/css/style.css">
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/css/rtl.css">
+      <link rel="stylesheet" href="/my-blog/css/rtl.css">
     
     <!-- rss -->
     
@@ -57,11 +57,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/my-blog/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/my-blog/about/">About</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/my-blog/archives/">Writing</a></li>
         
       </ul>
     </span>
@@ -69,10 +69,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2018/09/08/JS题目集锦-树/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/my-blog/2018/09/08/JS题目集锦-树/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2018/07/31/JS数据结构-双向链表与环链表/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/my-blog/2018/07/31/JS数据结构-双向链表与环链表/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -85,16 +85,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/09/07/JS数据结构-二叉树/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&text=JS数据结构-二叉树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&is_video=false&description=JS数据结构-二叉树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JS数据结构-二叉树&body=Check out this article: http://yoursite.com/2018/09/07/JS数据结构-二叉树/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&name=JS数据结构-二叉树&description=&lt;p&gt;从本篇起，我会尽我所能阐释那些复杂的数据结构，包括树与图，同时，从本篇起，会穿插地说一说其他的算法，例如排序，搜索，贪心等等，取决于我的思考程度以及leetcode做题程度（做的比较慢，总是想不出或总是debug失败。。。）。这一篇将会介绍树这一数据结构，本篇是基础篇，随后会有一篇树相关的算法。由于树中大量的运用到递归，总想不明白，目前leetcode只写出了很少的相关题。那么闲话少叙，现在开始。这里的树，仅限于二叉树。&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&text=JS数据结构-二叉树"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&is_video=false&description=JS数据结构-二叉树"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JS数据结构-二叉树&body=Check out this article: https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&name=JS数据结构-二叉树&description=&lt;p&gt;从本篇起，我会尽我所能阐释那些复杂的数据结构，包括树与图，同时，从本篇起，会穿插地说一说其他的算法，例如排序，搜索，贪心等等，取决于我的思考程度以及leetcode做题程度（做的比较慢，总是想不出或总是debug失败。。。）。这一篇将会介绍树这一数据结构，本篇是基础篇，随后会有一篇树相关的算法。由于树中大量的运用到递归，总想不明白，目前leetcode只写出了很少的相关题。那么闲话少叙，现在开始。这里的树，仅限于二叉树。&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -123,7 +123,7 @@
       
     <div class="postdate">
       
-        <time datetime="2018-09-07T00:06:50.000Z" itemprop="datePublished">2018-09-07</time>
+        <time datetime="2018-09-07T02:06:50.000Z" itemprop="datePublished">2018-09-07</time>
         
       
     </div>
@@ -160,11 +160,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/my-blog/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/my-blog/about/">About</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/my-blog/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -175,16 +175,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/09/07/JS数据结构-二叉树/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&text=JS数据结构-二叉树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&is_video=false&description=JS数据结构-二叉树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JS数据结构-二叉树&body=Check out this article: http://yoursite.com/2018/09/07/JS数据结构-二叉树/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/09/07/JS数据结构-二叉树/&name=JS数据结构-二叉树&description=&lt;p&gt;从本篇起，我会尽我所能阐释那些复杂的数据结构，包括树与图，同时，从本篇起，会穿插地说一说其他的算法，例如排序，搜索，贪心等等，取决于我的思考程度以及leetcode做题程度（做的比较慢，总是想不出或总是debug失败。。。）。这一篇将会介绍树这一数据结构，本篇是基础篇，随后会有一篇树相关的算法。由于树中大量的运用到递归，总想不明白，目前leetcode只写出了很少的相关题。那么闲话少叙，现在开始。这里的树，仅限于二叉树。&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&text=JS数据结构-二叉树"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&is_video=false&description=JS数据结构-二叉树"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JS数据结构-二叉树&body=Check out this article: https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&title=JS数据结构-二叉树"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://coding_zzx.gitee.io/my-blog/2018/09/07/JS数据结构-二叉树/&name=JS数据结构-二叉树&description=&lt;p&gt;从本篇起，我会尽我所能阐释那些复杂的数据结构，包括树与图，同时，从本篇起，会穿插地说一说其他的算法，例如排序，搜索，贪心等等，取决于我的思考程度以及leetcode做题程度（做的比较慢，总是想不出或总是debug失败。。。）。这一篇将会介绍树这一数据结构，本篇是基础篇，随后会有一篇树相关的算法。由于树中大量的运用到递归，总想不明白，目前leetcode只写出了很少的相关题。那么闲话少叙，现在开始。这里的树，仅限于二叉树。&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -208,11 +208,11 @@
     <nav>
       <ul>
          
-          <li><a href="/">Home</a></li>
+          <li><a href="/my-blog/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
+          <li><a href="/my-blog/about/">About</a></li>
          
-          <li><a href="/archives/">Writing</a></li>
+          <li><a href="/my-blog/archives/">Writing</a></li>
         
       </ul>
     </nav>
@@ -221,13 +221,13 @@
 
     </div>
     <!-- styles -->
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/my-blog/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/my-blog/lib/justified-gallery/css/justifiedGallery.min.css">
 
     <!-- jquery -->
-<script src="/lib/jquery/jquery.min.js"></script>
-<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
-<script src="/js/main.js"></script>
+<script src="/my-blog/lib/jquery/jquery.min.js"></script>
+<script src="/my-blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/my-blog/js/main.js"></script>
 <!-- search -->
 
 <!-- Google Analytics -->
