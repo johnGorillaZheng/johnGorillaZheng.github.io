@@ -1,162 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
-    <!-- so meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="这是我在ANU最后一学期的数据分析课（COMP8410/3425）的最终报告，分析一份调查问卷，有一些很有意思的东西，成绩也还不错，如果不算语法错误的扣分就优秀了。">
+  <meta charset="utf-8">
+  
+
+  
+  <title>一份数据挖掘报告 - 来自ANU的课程作业 | 旋空间</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这是我在ANU最后一学期的数据分析课（COMP8410/3425）的最终报告，分析一份调查问卷，有一些很有意思的东西，成绩也还不错，如果不算语法错误的扣分就优秀了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一份数据挖掘报告 - 来自ANU的课程作业">
 <meta property="og:url" content="https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/index.html">
 <meta property="og:site_name" content="旋空间">
 <meta property="og:description" content="这是我在ANU最后一学期的数据分析课（COMP8410/3425）的最终报告，分析一份调查问卷，有一些很有意思的东西，成绩也还不错，如果不算语法错误的扣分就优秀了。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-08-17T09:19:44.717Z">
+<meta property="og:image" content="https://coding_zzx.gitee.io/image/COMP8410Report/Tab1.jpg">
+<meta property="og:image" content="https://coding_zzx.gitee.io/image/COMP8410Report/Fig1.jpg">
+<meta property="og:image" content="https://coding_zzx.gitee.io/image/COMP8410Report/Fig2.jpg">
+<meta property="og:image" content="https://coding_zzx.gitee.io/image/COMP8410Report/Fig3.jpg">
+<meta property="og:image" content="https://coding_zzx.gitee.io/image/COMP8410Report/kmeans.png">
+<meta property="og:image" content="https://coding_zzx.gitee.io/image/COMP8410Report/Fig5.jpg">
+<meta property="og:image" content="https://coding_zzx.gitee.io/image/COMP8410Report/Fig6.jpg">
+<meta property="og:updated_time" content="2020-08-26T15:03:20.904Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一份数据挖掘报告 - 来自ANU的课程作业">
 <meta name="twitter:description" content="这是我在ANU最后一学期的数据分析课（COMP8410/3425）的最终报告，分析一份调查问卷，有一些很有意思的东西，成绩也还不错，如果不算语法错误的扣分就优秀了。">
-    
-    
-        
-          
-              <link rel="shortcut icon" href="/my-blog/images/logo.png">
-          
-        
-        
-          
-            <link rel="icon" type="image/png" href="/my-blog/images/logo.png" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/my-blog/images/logo.png">
-          
-        
-    
-    <!-- title -->
-    <title>一份数据挖掘报告 - 来自ANU的课程作业</title>
-    <!-- styles -->
-    <link rel="stylesheet" href="/my-blog/css/style.css">
-    <!-- persian styles -->
-    
-      <link rel="stylesheet" href="/my-blog/css/rtl.css">
-    
-    <!-- rss -->
-    
-    
+<meta name="twitter:image" content="https://coding_zzx.gitee.io/image/COMP8410Report/Tab1.jpg">
+  
+    <link rel="alternate" href="/my-blog/atom.xml" title="旋空间" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/my-blog/css/style.css">
 </head>
-
-<body class="max-width mx-auto px3 ltr">    
-      <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-          <li><a href="/my-blog/">Home</a></li>
-         
-          <li><a href="/my-blog/about/">About</a></li>
-         
-          <li><a href="/my-blog/archives/">Writing</a></li>
-        
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" href="/my-blog/2020/08/16/shell学习笔记 1 - 基础语法/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" href="/my-blog/2020/06/22/工程实践-几个项目开发下来的一些经验/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&text=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&title=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&is_video=false&description=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=一份数据挖掘报告 - 来自ANU的课程作业&body=Check out this article: https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&title=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&title=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&title=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&title=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&name=一份数据挖掘报告 - 来自ANU的课程作业&description=&lt;p&gt;这是我在ANU最后一学期的数据分析课（COMP8410/3425）的最终报告，分析一份调查问卷，有一些很有意思的东西，成绩也还不错，如果不算语法错误的扣分就优秀了。&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-</ul>
-
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/my-blog/" id="logo">旋空间</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/my-blog/" id="subtitle">郑子旋的个人博客</a>
+        </h2>
+      
     </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Data-Mining-on-different-gender’s-attitude-towards-data-utilisation-of-public-authority-–-using-ANUPOLL2018DATA"><span class="toc-number">1.</span> <span class="toc-text">Data Mining on different gender’s attitude towards data utilisation of public authority – using ANUPOLL2018DATA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.1.</span> <span class="toc-text">1 Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Data-description-and-pre-processing"><span class="toc-number">1.2.</span> <span class="toc-text">2 Data description and pre-processing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Data-description"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 Data description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-reduction"><span class="toc-number">1.2.2.</span> <span class="toc-text">Data reduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Data-imputing-and-recoding"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 Data imputing and recoding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Data-integration"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 Data integration</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Associate-mining"><span class="toc-number">1.3.</span> <span class="toc-text">3 Associate mining</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Overall-strategy"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 Overall strategy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Mining-on-attitude-towards-the-data-utilisation-of-the-government"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 Mining on attitude towards the data utilisation of the government</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Mining-on-attitude-towards-the-data-utilisation-of-the-institution"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 Mining on attitude towards the data utilisation of the institution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-Mining-on-attitude-towards-the-of-consumer-data-right"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.4 Mining on attitude towards the of consumer data right</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-Discussion"><span class="toc-number">1.3.5.</span> <span class="toc-text">3.5 Discussion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Unsupervised-learning-using-K-means-to-explore-the-relationship-between-the-count-of-each-answer"><span class="toc-number">1.4.</span> <span class="toc-text">4 Unsupervised learning using K-means to explore the relationship between the count of each answer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Supervised-learning-using-linear-model-to-predict-the-gender-based-on-the-count-of-each-answer"><span class="toc-number">1.5.</span> <span class="toc-text">5 Supervised learning using linear model to predict the gender based on the count of each answer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Methods-specification"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 Methods specification</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Result-analysis"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2 Result analysis</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Conclusion-and-future-work"><span class="toc-number">1.6.</span> <span class="toc-text">6 Conclusion and future work</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">1.7.</span> <span class="toc-text">References</span></a></li></ol></li></ol>
-    </div>
-  </span>
-</div>
-
-    
-    <div class="content index py4">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
+          <a class="main-nav-link" href="/my-blog/">Home</a>
+        
+          <a class="main-nav-link" href="/my-blog/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/my-blog/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://coding_zzx.gitee.io/my-blog"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-一份数据挖掘报告-来自ANU的课程作业" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/" class="article-date">
+  <time datetime="2020-08-14T07:57:25.000Z" itemprop="datePublished">2020-08-14</time>
+</a>
     
-    <h1 class="posttitle" itemprop="name headline">
-        一份数据挖掘报告 - 来自ANU的课程作业
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一份数据挖掘报告 - 来自ANU的课程作业
     </h1>
-
-
-
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">旋空间</span>
-      </span>
-      
-    <div class="postdate">
-      
-        <time datetime="2020-08-14T07:57:25.000Z" itemprop="datePublished">2020-08-14</time>
-        
-      
-    </div>
-
-
-      
-
-      
-
-    </div>
-  </header>
   
 
-  <div class="content" itemprop="articleBody">
-    <p>这是我在ANU最后一学期的数据分析课（COMP8410/3425）的最终报告，分析一份调查问卷，有一些很有意思的东西，成绩也还不错，如果不算语法错误的扣分就优秀了。</p>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是我在ANU最后一学期的数据分析课（COMP8410/3425）的最终报告，分析一份调查问卷，有一些很有意思的东西，成绩也还不错，如果不算语法错误的扣分就优秀了。</p>
 <a id="more"></a>
 <h1 id="Data-Mining-on-different-gender’s-attitude-towards-data-utilisation-of-public-authority-–-using-ANUPOLL2018DATA"><a href="#Data-Mining-on-different-gender’s-attitude-towards-data-utilisation-of-public-authority-–-using-ANUPOLL2018DATA" class="headerlink" title="Data Mining on different gender’s attitude towards data utilisation of public authority – using ANUPOLL2018DATA"></a>Data Mining on different gender’s attitude towards data utilisation of public authority – using ANUPOLL2018DATA</h1><h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><p>This report is trying to find out the different attitude between the males and females towards the topic of data utilisation of public authority by using the techniques taught in COMP8410 course like associate mining, linear model and clusters etc and it would use the ANUPOLL2018Data [1] as the data source. Basically, the project would use Rattle for the mining task and python with pandas to do the data pre-processing. In the beginning, we may assume that there may be no significant difference on the attitude or trust towards the public authority at the aspect of data utilisation and information security between these two genders.</p>
 <h2 id="2-Data-description-and-pre-processing"><a href="#2-Data-description-and-pre-processing" class="headerlink" title="2 Data description and pre-processing"></a>2 Data description and pre-processing</h2><h3 id="2-1-Data-description"><a href="#2-1-Data-description" class="headerlink" title="2.1 Data description"></a>2.1 Data description</h3><p>This report would use the original version of the ANUPOLL2018Data, a result of a poll and the source can be found in [1]. The original dataset contains 134 attributes and 2150 rows of data. Generally, those attributes could be classified into the following groups.</p>
+<p><img src="/image/COMP8410Report/Tab1.jpg" alt="a"></p>
 <h3 id="Data-reduction"><a href="#Data-reduction" class="headerlink" title="Data reduction"></a>Data reduction</h3><p>Only a small set of attributes would be used. The attributes like “Q1_oth” would be removed since they have very low completeness. Besides, since the topic is to study the people’s attitude towards data utilization, the question unrelated to this topic like Q1-Q4, Q16-Q19 and those related to “clicking” the link would also be eliminated. Moreover, attributes with single restricted value “-99” like “p_region” would also be removed since they have no use to group people. In this report’s context, I care only about people’s answers to each question. Therefore, attributes describe how much time used, those weights and what platform used for collecting the data would also be eliminated. In the end, 52 attributes remain. Such steps are done by Rattle “cleanup” within the Transform panel.</p>
 <h3 id="2-3-Data-imputing-and-recoding"><a href="#2-3-Data-imputing-and-recoding" class="headerlink" title="2.3 Data imputing and recoding"></a>2.3 Data imputing and recoding</h3><p>For the attributes with less than 50% missing values, the mode of such attribute would be used for imputing. For the attributes with more than 50% missing values, an “nan” would be imputed since inserting with a statistical number may affect the final results. Besides, all the questions and background information would be transferred from numerical data into categorical type because the numerical value for a question is a code of a text option hence categorical type. All operations above are done under the transform panel of Rattle, one is imputing and the other is recoding.</p>
 <h3 id="2-4-Data-integration"><a href="#2-4-Data-integration" class="headerlink" title="2.4 Data integration"></a>2.4 Data integration</h3><p>To study the reaction towards the poll of a different group of people, this section would use python with package pandas to count the type of reaction (the nominal value of each question) of each person and generate several new attributes. Those attributes include the count of refused, unknown, strongly against, neutral, against, agreed, and strongly agreed. The methods to generate attributes like agree and very_agree in 3425.csv is also used here.</p>
 <h2 id="3-Associate-mining"><a href="#3-Associate-mining" class="headerlink" title="3 Associate mining"></a>3 Associate mining</h2><h3 id="3-1-Overall-strategy"><a href="#3-1-Overall-strategy" class="headerlink" title="3.1 Overall strategy"></a>3.1 Overall strategy</h3><p>Generally, this report would classify the questions into different topics. According to the data dictionary [1], Q5-Q7 are related to the government, Q8 and Q11-Q14 are related to the institution, and Q10 are related to consumer data right. Therefore, the following experiments would be operated by those topics. Besides, since the aim is to find out whether there’s a relationship between the reaction of different groups of people, the project would not only do mining on the relationship of each question but more focus on mining the relationship between those questions and people. Therefore, when running the model on Rattle, the people group attribute “p_gender_sdc” would always be selected to see whether there is a relationship between question and gender. Besides, attribute “p_state”, “p_age_group_sdc” and “p_education_sdc” would also be kept, which aims to find out whether there are more interesting patterns with the gender. Besides, since this explores the patterns in the whole dataset, no partition would be used.</p>
 <h3 id="3-2-Mining-on-attitude-towards-the-data-utilisation-of-the-government"><a href="#3-2-Mining-on-attitude-towards-the-data-utilisation-of-the-government" class="headerlink" title="3.2 Mining on attitude towards the data utilisation of the government"></a>3.2 Mining on attitude towards the data utilisation of the government</h3><p>In this section, Q5-Q7 and people group attributes would be selected as input and the other attributes would be ignored. Firstly, the support and confidence are set to 0.15 and 0.8 for mining. The mining returns 217 rules. Generally, the mining results illustrates that the answers are strongly consistent, people are more likely to provide the same answer for each question. The mining result concentrates on Q5 and it shows that there is some relationship between the answer and different people. For example, the result in Figure 1 (a) shows that the male (the right cluster) are more likely to answer 1 to each part of Q5, which means they have a higher expectation than female on the government’s ability to deliver services to the public.</p>
+<p><img src="/image/COMP8410Report/Fig1.jpg" alt="a"></p>
 <p>To find out more patterns related to Q6 and Q7, the Q5 is removed from the input while Q6 and Q7are tested separately. Unfortunately, the mining for Q6 is unsuccessful since no rules are returned even setting the support to 0.1. If the support of the rule is less than 0.1, it means the rule may lack sufficient evidence [4], thus not considered in this report. The situation is better for Q7, where the support is set to 0.1, and confidence is set to 0.8, and it returns 35 rules and its graph is shown in Figure 1 (b). This graph also illustrates that the answer to each question has a relationship with gender. The females have the strongest concern about whether their data would be misused or accidentally exposed by the government. In other words, they are more unconfident about the government.</p>
 <h3 id="3-3-Mining-on-attitude-towards-the-data-utilisation-of-the-institution"><a href="#3-3-Mining-on-attitude-towards-the-data-utilisation-of-the-institution" class="headerlink" title="3.3 Mining on attitude towards the data utilisation of the institution"></a>3.3 Mining on attitude towards the data utilisation of the institution</h3><p>In this section, Q8, Q12-Q14, and people group attributes would be selected as input and the other attributes would be ignored. In the beginning, the mining is unsuccessful since the Q12-Q14 has nearly 50% missing values and all of them have been previously imputed “NAN”. As a result, most rules returned by the initial mining are related to “NAN”. To decrease its effect on associate mining, another step of data pre-processing has been taken to remove all observations with missing values. As for parameters, the support and confidence are set to 0.2 and 0.8. The result generates 43 rules, the graph for those rules is as below,</p>
+<p><img src="/image/COMP8410Report/Fig2.jpg" alt="a"></p>
 <p>As is shown in the graph, this mining rules concentrate on the Q13 and Q14. Generally, the female (the right cluster) are more likely to answer 1 for Q13 and male (the left cluster) with higher education background, aged 50-64, prefer 2 for Q13 and 3 for Q14. This means that the male would believe the institutions like universities and hospitals would keep their data properly and not expose them to others. In other words, the males have more confidence in the safety of their data.</p>
 <p>To find out more rules related to Q8 and Q12, Q3 and Q14 are removed from the input and another round of associate mining is operated. For Q12, there also 0 rules when setting the support to 0.1 like Q6’s situation. For Q8, the mining returns 5 rules, the relevant graph is in Figure 2 (b). It shows that the female would like to answer “1” for Q8, which means that they don’t trust the government or big companies at all. This finding is aligned to 3.2, that female won’t believe the government can use or keep their data properly.</p>
 <h3 id="3-4-Mining-on-attitude-towards-the-of-consumer-data-right"><a href="#3-4-Mining-on-attitude-towards-the-of-consumer-data-right" class="headerlink" title="3.4 Mining on attitude towards the of consumer data right"></a>3.4 Mining on attitude towards the of consumer data right</h3><p>In this section, Q10 and people group attributes would be selected as input and the other attributes would be ignored. As for parameters, the support and confidence are set to 0.1 and 0.65 since previous parameters seem too high. The associate mining on the consumer data right only returns 22 rules and it is shown in Figure 3. In this graph, the females are more likely to answer 4, which means they tend not to have others get access or use their data for receiving better services, but they also refuse to reduce their data online even for reducing the risk of privacy exposure at the same time. Another interesting thing is they are also potentially senior citizen and have a bachelor’s degree or above.</p>
+<p><img src="/image/COMP8410Report/Fig3.jpg" alt="a"></p>
 <h3 id="3-5-Discussion"><a href="#3-5-Discussion" class="headerlink" title="3.5 Discussion"></a>3.5 Discussion</h3><p>This section uses associate mining to find out whether there is a relationship between the answer and the gender. Generally, the females are more likely not to trust the authority, including governments, research institutions, and big companies and they are unsatisfied with the current situation although their expectations are lower than the males. This finding the previous assumption that both two genders may share the same attitude towards the public authority is wrong. Besides, the females are more sensitive about data security than the males. Moreover, the females are also more likely to choose the strongest answer in this questionnaire, which the males seldom choose according to the mining result. This is also surprising and against the intuition since the author thinks the males may be more likely to provide aggressive answer because of some stereotype. In the following section, the relationship between gender and such an action of choosing strong answer would be further investigated by the technologies of clustering and linear model.</p>
 <h2 id="4-Unsupervised-learning-using-K-means-to-explore-the-relationship-between-the-count-of-each-answer"><a href="#4-Unsupervised-learning-using-K-means-to-explore-the-relationship-between-the-count-of-each-answer" class="headerlink" title="4 Unsupervised learning using K-means to explore the relationship between the count of each answer"></a>4 Unsupervised learning using K-means to explore the relationship between the count of each answer</h2><p>The aim of applying K-means is pre-researching the count of each answer (strongly against, neutral, against, agreed and strongly agreed) before training a specific model. Before clustering, each count of answer would be rescaled to [0, 1] to avoid sparsity on the graph. This process is also operated via Rattle. Since the whole report concentrates on the relationship between question and gender, the number of clusters would simply set to 2. If existing a clear boundary between 2 clusters in a graph, it is potentially assumed that such attribute may be related to the classification of the gender.</p>
+<p><img src="/image/COMP8410Report/kmeans.png" alt="a"></p>
 <p>Generally, the combination of strongly against and strongly agreed and the combination of attribute “neutrall” and “strongly_agreed” have a clearer boundary to separate 2 clusters. Specifically, for strongly against and strongly agreed, it is clear that half of the respondents tend to choose very few numbers of such strong answers and meanwhile the other respondents tend to choose much more stronger answers. In the second combination, the graph illustrates that the attribute “neutral” and “strongly_agreed” are mutual repulsive where the two clusters are divided by the diagonal line. This indicates that the respondents would choose either the neutral or the strongly agreed. Based on such findings, the attribute “strongly_against”, “neutral” and “strongly_agreed” would be used for the following section.</p>
 <h2 id="5-Supervised-learning-using-linear-model-to-predict-the-gender-based-on-the-count-of-each-answer"><a href="#5-Supervised-learning-using-linear-model-to-predict-the-gender-based-on-the-count-of-each-answer" class="headerlink" title="5 Supervised learning using linear model to predict the gender based on the count of each answer"></a>5 Supervised learning using linear model to predict the gender based on the count of each answer</h2><h3 id="5-1-Methods-specification"><a href="#5-1-Methods-specification" class="headerlink" title="5.1 Methods specification"></a>5.1 Methods specification</h3><p>After exploring the relationship between the choices and the gender and the cluster study of the count of each answer, this report would continue exploring whether there’s model can predict the respondent’s gender by the count of each question he/she answered in the poll (strongly against, neutral, against, agreed and strongly agreed). Besides, based on the finding in associate mining, this section would also explore whether the strongest answer has an impact on classifying gender. Specifically, an experiment on eliminating the input attribute “strongly_agreed” and “strongly_against” would be processed to see its effect on classifying the gender of the observation. Generally, this report would use logistic regression to do the classification work.</p>
 <h3 id="5-2-Result-analysis"><a href="#5-2-Result-analysis" class="headerlink" title="5.2 Result analysis"></a>5.2 Result analysis</h3><p>For the base case where all input features remain, the partition of the data set to 80/10/10, where more data for training may improve the performance, and random seed setting to 4200 for obtaining a relatively good result. Since the target value includes “1” (male), “2” (female), and “nan” (unknown), the only selection in Rattle is to use multinominal for doing the linear model. The test result is in Figure 5. Then, the attribute “strongly_agreed” and “strongly_against” would be eliminated to see its effect and the relevant test result is shown in Figure 6.</p>
+<p><img src="/image/COMP8410Report/Fig5.jpg" alt="a"><br><img src="/image/COMP8410Report/Fig6.jpg" alt="a"></p>
 <p>As is shown in the graph, eliminating the attribute “strongly_agreed” and “strongly_against” cause an increase in the overall error and average class error. Especially, the error in predicting the female increase from 20.5% to 29.1%. However, the error of predicting the male decrease from 61.2% to 57.1%. In this case, removing the count of the two strongest answers has a positive effect on predicting the males and negative effects on predicting the females. This also proves the finding in associate mining that females tend to choose a stronger answer in this questionnaire, and they are more unsatisfied with their data security fact.</p>
 <p>Another experiment is taken to prove such a point, where the count of “neutral” is removed. The result is in Figure 7 and it shows that the predicting error of male increases from 61.2 % to 71.6% while the predicting error of female only decreases from 20.5% to 19.7%. This means that removing the count of “neutral” has more impact on predicting male, which implies that the females are more likely to give a stronger answer than the males.</p>
 <h2 id="6-Conclusion-and-future-work"><a href="#6-Conclusion-and-future-work" class="headerlink" title="6 Conclusion and future work"></a>6 Conclusion and future work</h2><p>This report uses the ANU POLL 2019 from [1] to explore whether there is a relationship between gender and the attitude on the data utilisation of authority like government or company. Several methods are used including associate mining, K-means cluster and linear model. The associate mining results show that the female is more likely doubtful on the safety of their data the authority and unsatisfied on the current situation than the male although their expectation may be lower than the males according to the result of data mining. The following K-means and the training of linear model also illustrate that the female also tend to provide stronger answer than the males.</p>
@@ -164,95 +130,125 @@
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>[1] N. Biddle, B. Edwards, M. Gray and S. McEachern, “ANU Poll 2018: Data Governance,” 2019. [Online]. Available: <a href="https://dataverse.ada.edu.au/dataset.xhtml?persistentId=doi:10.26193/XHORAI" target="_blank" rel="noopener">https://dataverse.ada.edu.au/dataset.xhtml?persistentId=doi:10.26193/XHORAI</a>.<br>[2] P. Bell, “Weighting and Standard Error Estimation for ABS HouseholdSurveys,” Australian Bureau of Statistics, 2000.<br>[3] P. J. Lavrakas, “Encyclopedia of Survey Research Methods,” Sage Publications, Inc., Thousand Oaks, 2008.<br>[4] J. Han, M. Kamber and J. Pei, Data Mining Concepts and Techniques, Elsevier, 2012.</p>
 <p>源数据链接：<a href="https://dataverse.ada.edu.au/dataset.xhtml?persistentId=doi:10.26193/XHORAI" target="_blank" rel="noopener">https://dataverse.ada.edu.au/dataset.xhtml?persistentId=doi:10.26193/XHORAI</a></p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/" data-id="ckebidj4z000ietfupllwetl4" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/my-blog/2020/08/16/shell学习笔记 1 - 基础语法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          shell学习笔记 1 - 编程基础语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/my-blog/2020/06/22/工程实践-几个项目开发下来的一些经验/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">学生时代几个项目开发下来的一些经验</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-
-
+</section>
         
-          <div id="footer-post-container">
-  <div id="footer-post">
+          <aside id="sidebar">
+  
+    
 
-    <div id="nav-footer" style="display: none">
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/10/">October 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/my-blog/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
       <ul>
-         
-          <li><a href="/my-blog/">Home</a></li>
-         
-          <li><a href="/my-blog/about/">About</a></li>
-         
-          <li><a href="/my-blog/archives/">Writing</a></li>
+        
+          <li>
+            <a href="/my-blog/2020/08/16/shell学习笔记 1 - 基础语法/">shell学习笔记 1 - 编程基础语法</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/">一份数据挖掘报告 - 来自ANU的课程作业</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/06/22/工程实践-几个项目开发下来的一些经验/">学生时代几个项目开发下来的一些经验</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/04/17/数据挖掘小知识-关联规则学习-Associate-mining/">数据挖掘小知识 - 关联规则学习 Associate mining</a>
+          </li>
+        
+          <li>
+            <a href="/my-blog/2020/04/15/JS语法糖总结/">JS语法糖总结</a>
+          </li>
         
       </ul>
     </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Data-Mining-on-different-gender’s-attitude-towards-data-utilisation-of-public-authority-–-using-ANUPOLL2018DATA"><span class="toc-number">1.</span> <span class="toc-text">Data Mining on different gender’s attitude towards data utilisation of public authority – using ANUPOLL2018DATA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.1.</span> <span class="toc-text">1 Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Data-description-and-pre-processing"><span class="toc-number">1.2.</span> <span class="toc-text">2 Data description and pre-processing</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Data-description"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 Data description</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-reduction"><span class="toc-number">1.2.2.</span> <span class="toc-text">Data reduction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Data-imputing-and-recoding"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 Data imputing and recoding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Data-integration"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 Data integration</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Associate-mining"><span class="toc-number">1.3.</span> <span class="toc-text">3 Associate mining</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Overall-strategy"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 Overall strategy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Mining-on-attitude-towards-the-data-utilisation-of-the-government"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 Mining on attitude towards the data utilisation of the government</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Mining-on-attitude-towards-the-data-utilisation-of-the-institution"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 Mining on attitude towards the data utilisation of the institution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-Mining-on-attitude-towards-the-of-consumer-data-right"><span class="toc-number">1.3.4.</span> <span class="toc-text">3.4 Mining on attitude towards the of consumer data right</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-Discussion"><span class="toc-number">1.3.5.</span> <span class="toc-text">3.5 Discussion</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Unsupervised-learning-using-K-means-to-explore-the-relationship-between-the-count-of-each-answer"><span class="toc-number">1.4.</span> <span class="toc-text">4 Unsupervised learning using K-means to explore the relationship between the count of each answer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Supervised-learning-using-linear-model-to-predict-the-gender-based-on-the-count-of-each-answer"><span class="toc-number">1.5.</span> <span class="toc-text">5 Supervised learning using linear model to predict the gender based on the count of each answer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-Methods-specification"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 Methods specification</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-Result-analysis"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2 Result analysis</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Conclusion-and-future-work"><span class="toc-number">1.6.</span> <span class="toc-text">6 Conclusion and future work</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">1.7.</span> <span class="toc-text">References</span></a></li></ol></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&text=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&title=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&is_video=false&description=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=一份数据挖掘报告 - 来自ANU的课程作业&body=Check out this article: https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&title=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&title=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&title=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&title=一份数据挖掘报告 - 来自ANU的课程作业"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://coding_zzx.gitee.io/my-blog/2020/08/14/一份数据挖掘报告-来自ANU的课程作业/&name=一份数据挖掘报告 - 来自ANU的课程作业&description=&lt;p&gt;这是我在ANU最后一学期的数据分析课（COMP8410/3425）的最终报告，分析一份调查问卷，有一些很有意思的东西，成绩也还不错，如果不算语法错误的扣分就优秀了。&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
-        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
-
   </div>
-</div>
 
+  
+</aside>
         
-        <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy; 2020 Zixuan Zheng
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/my-blog/">Home</a></li>
-         
-          <li><a href="/my-blog/about/">About</a></li>
-         
-          <li><a href="/my-blog/archives/">Writing</a></li>
-        
-      </ul>
-    </nav>
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Zixuan Zheng<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
   </div>
 </footer>
-
     </div>
-    <!-- styles -->
-<link rel="stylesheet" href="/my-blog/lib/font-awesome/css/all.min.css">
-<link rel="stylesheet" href="/my-blog/lib/justified-gallery/css/justifiedGallery.min.css">
+    <nav id="mobile-nav">
+  
+    <a href="/my-blog/" class="mobile-nav-link">Home</a>
+  
+    <a href="/my-blog/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
-    <!-- jquery -->
-<script src="/my-blog/lib/jquery/jquery.min.js"></script>
-<script src="/my-blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
-<script src="/my-blog/js/main.js"></script>
-<!-- search -->
-
-<!-- Google Analytics -->
-
-<!-- Baidu Analytics -->
-
-<!-- Disqus Comments -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
+  <link rel="stylesheet" href="/my-blog/fancybox/jquery.fancybox.css">
+  <script src="/my-blog/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/my-blog/js/script.js"></script>
+
+
+
+  </div>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
         tex2jax: {
