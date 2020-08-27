@@ -9,7 +9,7 @@
     <meta name="description" content="这一篇介绍图这一数据结构，之后也会放上leetcode的题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS数据结构-图">
-<meta property="og:url" content="https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/index.html">
+<meta property="og:url" content="https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/index.html">
 <meta property="og:site_name" content="旋空间">
 <meta property="og:description" content="这一篇介绍图这一数据结构，之后也会放上leetcode的题。">
 <meta property="og:locale" content="default">
@@ -21,27 +21,27 @@
     
         
           
-              <link rel="shortcut icon" href="/my-blog/images/logo.png">
+              <link rel="shortcut icon" href="/images/logo.png">
           
         
         
           
-            <link rel="icon" type="image/png" href="/my-blog/images/logo.png" sizes="192x192">
+            <link rel="icon" type="image/png" href="/images/logo.png" sizes="192x192">
           
         
         
           
-            <link rel="apple-touch-icon" sizes="180x180" href="/my-blog/images/logo.png">
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/logo.png">
           
         
     
     <!-- title -->
     <title>JS数据结构-图</title>
     <!-- styles -->
-    <link rel="stylesheet" href="/my-blog/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
     
-      <link rel="stylesheet" href="/my-blog/css/rtl.css">
+      <link rel="stylesheet" href="/css/rtl.css">
     
     <!-- rss -->
     
@@ -57,11 +57,11 @@
     <span id="nav">
       <ul>
          
-          <li><a href="/my-blog/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/my-blog/about/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
-          <li><a href="/my-blog/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </span>
@@ -69,10 +69,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/my-blog/2018/09/20/前端布局-固定导航栏与侧边栏/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2018/09/20/前端布局-固定导航栏与侧边栏/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/my-blog/2018/09/14/JS题目集锦-链表/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2018/09/14/JS题目集锦-链表/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -85,16 +85,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&text=JS数据结构-图"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&is_video=false&description=JS数据结构-图"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JS数据结构-图&body=Check out this article: https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&name=JS数据结构-图&description=&lt;p&gt;这一篇介绍图这一数据结构，之后也会放上leetcode的题。&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&text=JS数据结构-图"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&is_video=false&description=JS数据结构-图"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JS数据结构-图&body=Check out this article: https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&name=JS数据结构-图&description=&lt;p&gt;这一篇介绍图这一数据结构，之后也会放上leetcode的题。&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -158,11 +158,11 @@
     <div id="nav-footer" style="display: none">
       <ul>
          
-          <li><a href="/my-blog/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/my-blog/about/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
-          <li><a href="/my-blog/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </div>
@@ -173,16 +173,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&text=JS数据结构-图"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&is_video=false&description=JS数据结构-图"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=JS数据结构-图&body=Check out this article: https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://coding_zzx.gitee.io/my-blog/2018/09/14/JS数据结构-图/&name=JS数据结构-图&description=&lt;p&gt;这一篇介绍图这一数据结构，之后也会放上leetcode的题。&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&text=JS数据结构-图"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&is_video=false&description=JS数据结构-图"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=JS数据结构-图&body=Check out this article: https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&title=JS数据结构-图"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://johngorillazheng.github.io/2018/09/14/JS数据结构-图/&name=JS数据结构-图&description=&lt;p&gt;这一篇介绍图这一数据结构，之后也会放上leetcode的题。&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -206,11 +206,11 @@
     <nav>
       <ul>
          
-          <li><a href="/my-blog/">Home</a></li>
+          <li><a href="/">Home</a></li>
          
-          <li><a href="/my-blog/about/">About</a></li>
+          <li><a href="/about/">About</a></li>
          
-          <li><a href="/my-blog/archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
       </ul>
     </nav>
@@ -219,13 +219,13 @@
 
     </div>
     <!-- styles -->
-<link rel="stylesheet" href="/my-blog/lib/font-awesome/css/all.min.css">
-<link rel="stylesheet" href="/my-blog/lib/justified-gallery/css/justifiedGallery.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
 
     <!-- jquery -->
-<script src="/my-blog/lib/jquery/jquery.min.js"></script>
-<script src="/my-blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
-<script src="/my-blog/js/main.js"></script>
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
 <!-- search -->
 
 <!-- Google Analytics -->
